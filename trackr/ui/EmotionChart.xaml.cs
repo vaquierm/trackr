@@ -24,6 +24,9 @@ namespace trackr.ui
     /// </summary>
     public partial class EmotionChart : UserControl
     {
+        public Visibility monthVisibility { get; set; }
+        public Visibility yearlyVisibility { get; set; }
+
         public EmotionChart()
         {
             InitializeComponent();
@@ -88,6 +91,33 @@ namespace trackr.ui
                 : Visibility.Visible;
         }
 
+        private void ListBox2_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var item = ItemsControl.ContainerFromElement(ListBox, (DependencyObject)e.OriginalSource) as ListBoxItem;
+            if (item == null) return;
+
+            if (item.Content.ToString() == "Yearly")
+            {
+                if (yearlyVisibility == Visibility.Hidden)
+                {
+                    UpdateSeriesPatientBasisYearly(Workspace.Instance.ActivePatient);
+
+                    yearlyVisibility = Visibility.Visible;
+                    monthVisibility = Visibility.Hidden;
+                }
+            }
+            else
+            {
+                if (monthVisibility == Visibility.Hidden)
+                {
+                    UpdateSeriesPatientBasisMonthly(Workspace.Instance.ActivePatient);
+
+                    yearlyVisibility = Visibility.Hidden;
+                    monthVisibility = Visibility.Visible;
+                }
+            }
+        }
+
         public void UpdateSeriesPatientBasis(TherapyPatient patient)
         {
             if (patient?.GetSessions() == null)
@@ -103,6 +133,9 @@ namespace trackr.ui
             foreach (var session in patient.GetSessions())
             {
                 var emotionData = session.GetEmotionDataList();
+
+                if (emotionData.Count == 0)
+                    continue;
 
                 float avg = 0;
 
@@ -252,6 +285,9 @@ namespace trackr.ui
 
                 var emotionData = session.GetEmotionDataList();
 
+                if (emotionData.Count == 0)
+                    continue;
+
                 float avg = 0;
 
                 // Anger
@@ -348,9 +384,9 @@ namespace trackr.ui
             float sadness = 0;
             float surprise = 0;
 
-            int n = 0;
+            var n = 0;
             
-            int year = 0;
+            var year = 0;
 
             foreach (var session in patient.GetSessions())
             {
@@ -389,6 +425,9 @@ namespace trackr.ui
                 n++;
 
                 var emotionData = session.GetEmotionDataList();
+
+                if (emotionData.Count == 0)
+                    continue;
 
                 float avg = 0;
 
@@ -472,7 +511,10 @@ namespace trackr.ui
                 return;
             }
 
-            List<EmotionData> emotionData = session.GetEmotionDataList();
+            var emotionData = session.GetEmotionDataList();
+
+            if (emotionData.Count == 0)
+                return;
 
             // Anger
             foreach (var data in emotionData)
