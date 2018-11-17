@@ -30,7 +30,7 @@ namespace trackr.core
             var t = new T();
             if (File.Exists(fileName))
             {
-                t = JsonConvert.DeserializeObject<T>(fileName);
+                t = JsonConvert.DeserializeObject<T>(File.ReadAllText(fileName));
             }
             return t;
         }

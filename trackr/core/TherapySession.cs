@@ -19,10 +19,10 @@ namespace trackr.core
         
         public bool SessionRunning { get; set; }
 
-        [JsonProperty(PropertyName = "Notes")]
+        [JsonProperty(PropertyName = nameof(_notesDictionary), Required = Required.Always)]
         private readonly Dictionary<DateTime, string> _notesDictionary;
         
-        [JsonProperty(PropertyName = "EmotionData")]
+        [JsonProperty(PropertyName = nameof(_emotionData), Required = Required.Always)]
         private readonly List<EmotionData> _emotionData;
         
         public TherapySession(TherapyPatientInfo clientInfo)
@@ -39,7 +39,7 @@ namespace trackr.core
         {
             _notesDictionary.Add(timeStamp, content);
         }
-
+        
         public void InsertEmotionData(EmotionData data)
         {
             _emotionData.Add(data);
