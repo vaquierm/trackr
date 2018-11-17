@@ -124,7 +124,7 @@ namespace trackr.imgProcessing
 
                         Console.Write(resultEmotionData);
 
-                        NewEmotionDataAvailible.Invoke(null, emotionsEventArgs);
+                        NewEmotionDataAvailable.Invoke(null, emotionsEventArgs);
                     }
                 }
 
@@ -166,7 +166,7 @@ namespace trackr.imgProcessing
         /// <summary>
         /// Hook onto this event to get emotion data
         /// </summary>
-        public static event EventHandler NewEmotionDataAvailible;
+        public static event EventHandler NewEmotionDataAvailable;
 
     }
 }

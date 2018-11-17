@@ -40,6 +40,8 @@ namespace trackr.ui
             get => Workspace.Instance.ActivePatient.GetActiveSession();
         }
         
+        public bool SessionStarted { get; set; }
+        
         #endregion
 
         public void SendNoteToWorkspace(string rawNote)
@@ -56,6 +58,19 @@ namespace trackr.ui
             {
                 Console.WriteLine(e);
             }
+        }
+
+        public void StartNewSession()
+        {
+            Workspace.Instance.EndCurrentSession();
+            Workspace.Instance.StartNewSession();
+            SessionStarted = true;
+        }
+
+        public void EndCurrentSession()
+        {
+            Workspace.Instance.EndCurrentSession();
+            SessionStarted = false;
         }
 
         public void Close()

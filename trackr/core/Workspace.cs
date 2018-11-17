@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using trackr.imgProcessing;
 using trackr.ui;
 
 namespace trackr.core
@@ -36,10 +37,24 @@ namespace trackr.core
             // TEST PURPOSES
             PatientViewViewModel.Instance.ActivePatient = _patients.First();
             PatientViewViewModel.Instance.ActivePatient.NewSession();
+            // TEST PURPOSES
+            
+        }
+
+        private void CameraControllerOnNewEmotionDataAvailable(object sender, EventArgs e)
+        {
+            if (!(e is CameraController.NewEmotionDataEventArgs args))
+            {
+                return;
+            }
+
+            var data = args.Data;
+            ActivePatient.GetActiveSession()?.InsertEmotionData(data);
         }
 
         public void Close()
         {
+            EndCurrentSession();
             foreach (var patient in _patients)
             {
                 foreach (var therapySession in patient.GetSessions())
@@ -129,11 +144,24 @@ namespace trackr.core
 
         public TherapySession StartNewSession()
         {
+            CameraController.NewEmotionDataAvailable += CameraControllerOnNewEmotionDataAvailable;
+            CameraController.StartCapture();
             return ActivePatient.NewSession();
         }
 
+        
         public void EndCurrentSession()
         {
+            if (!ActivePatient.GetSessions().Any())
+            {
+                return;
+            }
+            if (ActivePatient.GetSessions().Any() && !ActivePatient.GetActiveSession().SessionRunning)
+            {
+                return;
+            }
+            CameraController.NewEmotionDataAvailable -= CameraControllerOnNewEmotionDataAvailable;
+            CameraController.StopCapture();
             ActivePatient.EndSession();
             SaveActivePatient(false);
         }

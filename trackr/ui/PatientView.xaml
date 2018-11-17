@@ -32,7 +32,18 @@
             </TabItem>
             <TabItem Header="New" Width="{Binding ElementName=c1, Path=ActualWidth}">
                 <Grid Background="#FFE5E5E5">
-                    <controls:NoteTextEditor x:Name="nte"></controls:NoteTextEditor>
+                    <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
+                          RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
+                        <ToolBar x:Name="NewtoolBar" Band="1" BandIndex="1">
+                            <Button x:Name="btnStart" Click="btnStart_Click" >
+                                <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100" HorizontalAlignment="Left"/>
+                            </Button>
+                            <Button x:Name="btnEnd" Click="btnEnd_Click" HorizontalAlignment="Right">
+                                <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <controls:NoteTextEditor x:Name="nte" IsEnabled="{Binding Path=SessionStarted}"/>
                 </Grid>
             </TabItem>
         </TabControl>

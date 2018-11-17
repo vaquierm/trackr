@@ -13,6 +13,9 @@ namespace trackr.core
         [JsonProperty(PropertyName = "sessions")]
         private readonly List<TherapySession> _sessions;
 
+        [JsonProperty(PropertyName = nameof(NextSession))]
+        public DateTime NextSession { get; set; }
+        
         public TherapyPatient(string name, string lastName, Gender gender, DateTime birthDate)
         {
             Info = new TherapyPatientInfo {Name = name, LastName = lastName, Gender = gender, BirthDate = birthDate};
