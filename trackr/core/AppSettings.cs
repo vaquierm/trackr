@@ -6,8 +6,14 @@ namespace trackr.core
 {
     public class TrackrSettings : AppSettings<TrackrSettings>
     {
-        public static string DefaultWorkingDir = Directory.GetCurrentDirectory();
-        public static string WorkingDirectory;
+        [JsonProperty(PropertyName = nameof(UseDefaultDir))]
+        public bool UseDefaultDir = true;
+        
+        [JsonProperty(PropertyName = nameof(DefaultWorkingDir))]
+        public string DefaultWorkingDir = Path.Combine(Directory.GetCurrentDirectory(), "TrackrWorkspace");
+        
+        [JsonProperty(PropertyName = nameof(WorkingDirectory))]
+        public string WorkingDirectory = string.Empty;
     }
     
     public class AppSettings<T> where T : new()
@@ -22,8 +28,10 @@ namespace trackr.core
         public static T Load(string fileName = DefaultFilename)
         {
             var t = new T();
-            if(File.Exists(fileName))
+            if (File.Exists(fileName))
+            {
                 t = JsonConvert.DeserializeObject<T>(fileName);
+            }
             return t;
         }
     } 

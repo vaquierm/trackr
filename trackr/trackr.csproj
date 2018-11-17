@@ -58,6 +58,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="core\TherapyPatient.cs" />
+    <Compile Include="core\Workspace.cs" />
     <Compile Include="ui\NoteTextEditor.xaml.cs">
       <DependentUpon>NoteTextEditor.xaml</DependentUpon>
     </Compile>
@@ -76,7 +78,7 @@
     </Compile>
     <Compile Include="core\AppSettings.cs" />
     <Compile Include="core\EmotionData.cs" />
-    <Compile Include="core\TherapyClientInfo.cs" />
+    <Compile Include="core\TherapyPatientInfo.cs" />
     <Compile Include="core\TherapySession.cs" />
     <Compile Include="imgProcessing\FaceApiController.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -124,8 +126,6 @@
   <ItemGroup>
     <Resource Include="WelcomeImage.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

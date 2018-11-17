@@ -1,4 +1,8 @@
-obj/**/*
+*.suo
+*.user
+_ReShaper.*
+packages/
+obj/
 bin/
 trackr.sln
 .vs/

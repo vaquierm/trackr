@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using trackr.ImageProcessing;
 
 namespace trackr.core
 {
     public class TherapySession
     {
-        public TherapyClientInfo TherapyClientInfo { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
-
-        private readonly Dictionary<DateTime, string> _notesDictionary;
-        private readonly List<EmotionData> _emotionData;
-        private bool _sessionRunning;
+        [JsonProperty(PropertyName = nameof(TherapyClientInfo))]
+        public TherapyPatientInfo TherapyClientInfo { get; set; }
         
-        public TherapySession(TherapyClientInfo clientInfo)
+        [JsonProperty(PropertyName = nameof(StartDateTime))]
+        public DateTime StartDateTime { get; set; }
+        
+        [JsonProperty(PropertyName = nameof(EndDateTime))]
+        public DateTime EndDateTime { get; set; }
+        
+        public bool SessionRunning { get; set; }
+
+        [JsonProperty(PropertyName = "Notes")]
+        private readonly Dictionary<DateTime, string> _notesDictionary;
+        
+        [JsonProperty(PropertyName = "EmotionData")]
+        private readonly List<EmotionData> _emotionData;
+        
+        public TherapySession(TherapyPatientInfo clientInfo)
         {
             TherapyClientInfo = clientInfo;
             StartDateTime = DateTime.Now;
-            _sessionRunning = true;
+            SessionRunning = true;
             
             _notesDictionary = new Dictionary<DateTime, string>();
             _emotionData = new List<EmotionData>();
@@ -45,7 +55,7 @@ namespace trackr.core
         public void EndSession()
         {
             EndDateTime = DateTime.Now;
-            _sessionRunning = false;
+            SessionRunning = false;
         }
     }
 }
