@@ -24,7 +24,7 @@ namespace trackr
     /// <summary>
     /// Interaction logic for TrackrHome.xaml
     /// </summary>
-    public partial class TrackrHome : Window
+    public partial class TrackrHome : Page
     {
         private readonly TrackrHomeViewModel _viewModel;
         private readonly Timer _welcomeTimer;
@@ -60,7 +60,7 @@ namespace trackr
 
             welcomeImage.Visibility = Visibility.Collapsed;
             welcomeText.Visibility = Visibility.Collapsed;
-            welcomeText2.Visibility = Visibility.Collapsed;
+            trackr.Visibility = Visibility.Collapsed;
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -68,6 +68,11 @@ namespace trackr
             Dispatcher.Invoke(DispatcherPriority.Background, (Action)FadeWelcomeScreen);
 
             _welcomeTimer.Stop();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new PatientView("Test"));
         }
     }
 }

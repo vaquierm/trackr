@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\L3gume\Projects\Trackr\trackr\trackr\obj\Debug\
+C:\Users\Evan\Documents\trackr\trackr\obj\Debug\
 trackr
 none
 false
 DEBUG;TRACE
-C:\Users\L3gume\Projects\Trackr\trackr\trackr\App.xaml
-31092779029
+C:\Users\Evan\Documents\trackr\trackr\App.xaml
+71982249858
 
-181613360188
-14154763055
-MainWindow.xaml;ui\NoteTextEditor.xaml;ui\TrackrHome.xaml;
+26-872660429
+24-595589687
+ImageFeedWindow.xaml;MainWindow.xaml;ui\EmotionChart.xaml;ui\MainWindow.xaml;ui\NoteTextEditor.xaml;ui\PatientView.xaml;ui\TrackrHome.xaml;
 
 False
 
