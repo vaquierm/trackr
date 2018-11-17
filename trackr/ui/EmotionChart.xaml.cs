@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using trackr.core;
+using trackr.ImageProcessing;
 
 namespace trackr.ui
 {
@@ -30,42 +32,42 @@ namespace trackr.ui
             {
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {20, 30, 35, 45, 65, 85},
+                    Values = new ChartValues<double> {},
                     Title = "Anger"
                 },
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {10, 12, 18, 20, 38, 40},
+                    Values = new ChartValues<double> {},
                     Title = "Contempt"
                 },
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {5, 8, 12, 15, 22, 25},
+                    Values = new ChartValues<double> {},
                     Title = "Disgust"
                 },
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {10, 12, 18, 20, 38, 40},
+                    Values = new ChartValues<double> {},
                     Title = "Fear"
                 },
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Values = new ChartValues<double> {},
                     Title = "Happiness"
                 },
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Values = new ChartValues<double> {},
                     Title = "Neutral"
                 },
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Values = new ChartValues<double> {},
                     Title = "Sadness"
                 },
                 new LineSeries
                 {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Values = new ChartValues<double> {},
                     Title = "Surprise"
                 }
             };
@@ -86,51 +88,143 @@ namespace trackr.ui
                 : Visibility.Visible;
         }
 
-        public void UpdateSeries(string s)
+        public void UpdateSeriesPatientBasis(TherapyPatient patient)
         {
-            Series = new SeriesCollection
+            foreach (LineSeries series in Series)
             {
-                new LineSeries
+                series.Values.Clear();
+            }
+
+            foreach (TherapySession session in patient.GetSessions())
+            {
+                List<EmotionData> emotionData = session.GetEmotionDataList();
+
+                float avg = 0;
+
+                // Anger
+                foreach (EmotionData data in emotionData)
                 {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Anger"
-                },
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Contempt"
-                },
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Disgust"
-                },
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Fear"
-                },
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Happiness"
-                },
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Neutral"
-                },
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Sadness"
-                },
-                new LineSeries
-                {
-                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
-                    Title = "Surprise"
+                    avg += data.Anger;
                 }
-            };
+                avg /= emotionData.Count;
+                Series.ElementAt(0).Values.Add(avg);
+                avg = 0;
+
+                // Contempt
+                foreach (EmotionData data in emotionData)
+                {
+                    avg += data.Contempt;
+                }
+                avg /= emotionData.Count;
+                Series.ElementAt(1).Values.Add(avg);
+                avg = 0;
+
+                // Disgust
+                foreach (EmotionData data in emotionData)
+                {
+                    avg += data.Disgust;
+                }
+                avg /= emotionData.Count;
+                Series.ElementAt(2).Values.Add(avg);
+                avg = 0;
+
+                // Fear
+                foreach (EmotionData data in emotionData)
+                {
+                    avg += data.Fear;
+                }
+                avg /= emotionData.Count;
+                Series.ElementAt(3).Values.Add(avg);
+                avg = 0;
+
+                // Happiness
+                foreach (EmotionData data in emotionData)
+                {
+                    avg += data.Happiness;
+                }
+                avg /= emotionData.Count;
+                Series.ElementAt(4).Values.Add(avg);
+                avg = 0;
+
+                // Neutral
+                foreach (EmotionData data in emotionData)
+                {
+                    avg += data.Neutral;
+                }
+                avg /= emotionData.Count;
+                Series.ElementAt(5).Values.Add(avg);
+                avg = 0;
+
+                // Sadness
+                foreach (EmotionData data in emotionData)
+                {
+                    avg += data.Sadness;
+                }
+                avg /= emotionData.Count;
+                Series.ElementAt(6).Values.Add(avg);
+                avg = 0;
+
+                // Surprise
+                foreach (EmotionData data in emotionData)
+                {
+                    avg += data.Surprise;
+                }
+                avg /= emotionData.Count;
+                Series.ElementAt(7).Values.Add(avg);
+            }
+        }
+
+        public void UpdateSeriesSessionBasis(TherapySession session)
+        {
+            List<EmotionData> emotionData = session.GetEmotionDataList();
+
+            // Anger
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(0).Values.Add(data.Anger);
+            }
+
+            // Contempt
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(1).Values.Add(data.Contempt);
+            }
+
+            // Disgust
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(2).Values.Add(data.Disgust);
+            }
+
+            // Fear
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(3).Values.Add(data.Fear);
+            }
+
+            // Happiness
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(4).Values.Add(data.Happiness);
+            }
+
+            // Neutral
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(5).Values.Add(data.Neutral);
+            }
+
+            // Sadness
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(6).Values.Add(data.Sadness);
+            }
+
+            // Surprise
+            foreach (EmotionData data in emotionData)
+            {
+                Series.ElementAt(7).Values.Add(data.Surprise);
+            }
         }
     }
 }
