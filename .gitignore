@@ -1,9 +1,9 @@
 *.suo
 *.user
 _ReShaper.*
-packages/
-obj/
-bin/
+packages
+obj
+bin
 trackr.sln
-.vs/
+.vs
 *.dll
