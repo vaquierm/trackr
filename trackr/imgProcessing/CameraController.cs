@@ -106,7 +106,8 @@ namespace trackr.imgProcessing
                 var imgArgs = new NewFrameAcquiredEventArgs();
                 imgArgs.Img = bi;
 
-                NewFrameAcquired.Invoke(null, imgArgs);
+                //NewFrameAcquired.Invoke(null, imgArgs);
+                NewFrameAcquired(null, imgArgs);
 
                 // If emotion calculations are required calculate them
                 if (EmotionCalculationEnabled)
