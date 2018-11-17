@@ -13,26 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using trackr.core;
-using trackr.imgProcessing;
 
-namespace trackr.ui
+namespace trackr
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            Workspace.Instance.Init();
-            CameraController.InitializeToDefaultCamera();
         }
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            Workspace.Instance.Close();           
+            throw new NotImplementedException();
         }
     }
 }

@@ -31,13 +31,14 @@ namespace trackr.core
 
         public void EndSession()
         {
-            GetActiveSession().EndSession();
+            GetActiveSession()?.EndSession();
         }
         
         public List<TherapySession> GetSessions() => _sessions;
         
         public TherapySession GetActiveSession()
         {
+            if (!_sessions.Any()) return null;
             return _sessions.Last().SessionRunning ? _sessions.Last() : null;
         }
     }
