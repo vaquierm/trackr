@@ -22,7 +22,7 @@
                                TextWrapping="Wrap"
                                Text="Take pictures of me and put them on the Internet. Meow."
                                VerticalAlignment="Top"/>
-                    <controls:EmotionChart x:Name="chart" Margin="0,0,30,45"></controls:EmotionChart>
+                    <controls:EmotionChart x:Name="chart" Margin="400,45,55.5,70"></controls:EmotionChart>
                 </Grid>
             </TabItem>
             <TabItem Header="Sessions" Width="{Binding ElementName=c1, Path=ActualWidth}">
