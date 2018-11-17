@@ -54,11 +54,26 @@ namespace trackr.ui
 
         public void SendNoteToWorkspace(string rawNote)
         {
-
+            var tokens = rawNote.Split(new[] {'[', ']'}, 2, StringSplitOptions.RemoveEmptyEntries);
+            if (!tokens.Any()) return;
+            try
+            {
+                var timeStamp = DateTime.ParseExact(tokens[0], "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                var noteContent = tokens[1];
+                ActivePatient.GetActiveSession().InsertNote(timeStamp, noteContent);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void Close()
         {
+            if (ActiveSession.SessionRunning)
+            {
+                ActivePatient.EndSession();
+            }
             Closing?.Invoke(this, EventArgs.Empty);
         }
         
