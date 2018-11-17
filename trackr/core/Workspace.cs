@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using trackr.imgProcessing;
+using trackr.ui;
 
 namespace trackr.core
 {
@@ -25,21 +27,43 @@ namespace trackr.core
 
         public TherapyPatient ActivePatient { get; set; }
         
-        
         public void Init()
         {
             _settings = TrackrSettings.Load();
             _patients = new List<TherapyPatient>();
             SetupFileSystem();
             LoadPatients();
+            
+            // TEST PURPOSES
+            //PatientViewViewModel.Instance.ActivePatient = _patients.First();
+            //PatientViewViewModel.Instance.ActivePatient.NewSession();
+            // TEST PURPOSES
+            
+        }
+
+        private void CameraControllerOnNewEmotionDataAvailable(object sender, EventArgs e)
+        {
+            if (!(e is CameraController.NewEmotionDataEventArgs args))
+            {
+                return;
+            }
+
+            var data = args.Data;
+            ActivePatient.GetActiveSession()?.InsertEmotionData(data);
         }
 
         public void Close()
         {
+            EndCurrentSession();
             foreach (var patient in _patients)
             {
+                foreach (var therapySession in patient.GetSessions())
+                {
+                    if (therapySession.SessionRunning) therapySession.EndSession();
+                }
                 SavePatient(patient, false);
             }
+            _settings.Save();
         }
 
         private void SetupFileSystem()
@@ -115,16 +139,34 @@ namespace trackr.core
         {
             var workspacePath = _settings.UseDefaultDir ? _settings.DefaultWorkingDir : _settings.WorkingDirectory;
             var filename = Path.Combine(workspacePath, patient.PatientStringId + ".trck");
-            File.WriteAllText(filename, JsonConvert.SerializeObject(patient));
+            File.WriteAllText(filename, JsonConvert.SerializeObject(patient, Formatting.Indented));
         }
 
         public TherapySession StartNewSession()
         {
+            CameraController.NewEmotionDataAvailable += CameraControllerOnNewEmotionDataAvailable;
+            CameraController.StartCapture();
             return ActivePatient.NewSession();
         }
 
+        
         public void EndCurrentSession()
         {
+            if (ActivePatient?.GetActiveSession() == null)
+                return;
+
+            if (!ActivePatient.GetSessions().Any())
+            {
+                return;
+            }
+            if (ActivePatient.GetSessions().Any() 
+                && ActivePatient.GetActiveSession() != null
+                && !ActivePatient.GetActiveSession().SessionRunning)
+            {
+                return;
+            }
+            CameraController.NewEmotionDataAvailable -= CameraControllerOnNewEmotionDataAvailable;
+            CameraController.StopCapture();
             ActivePatient.EndSession();
             SaveActivePatient(false);
         }

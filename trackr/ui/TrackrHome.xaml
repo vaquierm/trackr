@@ -19,13 +19,13 @@
       <TextBlock x:Name="welcomeText" Visibility="Collapsed" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Margin="186,82,170.5,205.5" Height="135" Width="456"/>
       <Image x:Name="trackr" Visibility="Collapsed" HorizontalAlignment="Left" Height="92" Margin="285,236,0,0" VerticalAlignment="Top" Width="253" Source="../trackr.png"/>
     </Grid>
-        <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
+    <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
       <ToolBar x:Name="toolBar" Band="1" BandIndex="1">
-                <Button x:Name="btnSettings" Click="btnSettings_Click" >
-          <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
+        <Button x:Name="btnSettings" Click="btnSettings_Click">
+            <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
         </Button>
-      </ToolBar>
+    </ToolBar>
     </ToolBarTray>
   </Grid>
 </Page>

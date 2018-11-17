@@ -26,8 +26,8 @@ namespace trackr.ui
         public MainWindow()
         {
             InitializeComponent();
-            Workspace.Instance.Init();
             CameraController.InitializeToDefaultCamera();
+            Workspace.Instance.Init();
         }
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
