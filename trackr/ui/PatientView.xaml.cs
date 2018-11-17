@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using trackr.core;
 
 namespace trackr.ui
 {
@@ -20,8 +21,6 @@ namespace trackr.ui
     /// </summary>
     public partial class PatientView : Page
     {
-        string patient;
-
         public PatientView()
         {
             InitializeComponent();
@@ -29,22 +28,28 @@ namespace trackr.ui
 
         public PatientView(object o)
         {
+            this.DataContext = PatientViewViewModel.Instance;
+
+            var patient = Workspace.Instance.GetTherapyPatientFromStringId((string)o);
+
+            PatientViewViewModel.Instance.ActivePatient = patient;
+
             InitializeComponent();
 
-            patient = (string)o;
+            chart.UpdateSeriesPatientBasis(patient);
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void btnBack_Click(object sender, RoutedEventArgs e)
         {
+            PatientViewViewModel.Instance.ActivePatient = null;
+
             NavigationService.GoBack();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            textBlock.Dispatcher.BeginInvoke((Action)delegate ()
-            {
-                this.textBlock.Text = patient;
-            });
+            ImageFeedWindow imageFeedWindow = new ImageFeedWindow();
+            imageFeedWindow.Show();
         }
     }
 }

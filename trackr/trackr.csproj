@@ -86,6 +86,7 @@
     </ApplicationDefinition>
     <Compile Include="core\TherapyPatient.cs" />
     <Compile Include="core\Workspace.cs" />
+    <Compile Include="ui\IdContainerButton.cs" />
     <Compile Include="ui\ImageFeedWindow.xaml.cs">
       <DependentUpon>ImageFeedWindow.xaml</DependentUpon>
     </Compile>
@@ -176,9 +177,7 @@
   <ItemGroup>
     <Resource Include="WelcomeImage.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="trackr.png" />
   </ItemGroup>

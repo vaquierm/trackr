@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:trackr.ui"
       xmlns:controls="clr-namespace:trackr.ui"
-      Title="PatientView" Loaded="Page_Loaded">
+      Title="PatientView">
     <Grid Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" 
             Height="{Binding ActualHeight, 
@@ -13,15 +13,17 @@
         <UniformGrid Columns="3" Margin="5,0">
             <FrameworkElement x:Name="c1"/>
         </UniformGrid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" VerticalAlignment="Top"
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 30 0 0"
                     Height="{Binding ActualHeight, RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}">
             <TabItem Header="Overview" Width="{Binding ElementName=c1, Path=ActualWidth}">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left"
+                    <TextBlock x:Name="textBlockName" HorizontalAlignment="Left"
                                Margin="10"
                                TextWrapping="Wrap"
-                               Text="Take pictures of me and put them on the Internet. Meow."
+                               Text="{Binding Path=ActivePatientName}"
                                VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockLast" HorizontalAlignment="Left" Margin="77,59,0,0" TextWrapping="Wrap" Text="{Binding Path=ActivePatientLastDate}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockNext" HorizontalAlignment="Left" Margin="79,105,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
                     <controls:EmotionChart x:Name="chart" Margin="400,45,55.5,70"></controls:EmotionChart>
                 </Grid>
             </TabItem>
@@ -34,5 +36,16 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
+              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
+            <ToolBar x:Name="toolBar" Band="1" BandIndex="1">
+                <Button x:Name="btnBack" Click="btnBack_Click" >
+                    <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100" HorizontalAlignment="Left"/>
+                </Button>
+                <Button x:Name="btnSettings" Click="btnSettings_Click" HorizontalAlignment="Right">
+                    <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
     </Grid>
 </Page>

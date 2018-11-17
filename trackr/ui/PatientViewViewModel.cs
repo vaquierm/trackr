@@ -17,9 +17,17 @@ namespace trackr.ui
         
         public event EventHandler Closing;
 
-        public System.Collections.ObjectModel.ObservableCollection<List<string>> strings { get; set; }
-
         #region Properties
+
+        public string ActivePatientLastDate
+        {
+            get => Workspace.Instance.ActivePatient?.GetSessions().Last().StartDateTime.ToShortDateString();
+        }
+
+        public string ActivePatientName
+        {
+            get => Workspace.Instance.ActivePatient?.Info.Name + " " + Workspace.Instance.ActivePatient?.Info.LastName;
+        }
 
         public TherapyPatient ActivePatient
         {
