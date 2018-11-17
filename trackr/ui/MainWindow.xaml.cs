@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using trackr.core;
 using trackr.imgProcessing;
 
 namespace trackr.ui
@@ -24,8 +26,12 @@ namespace trackr.ui
         public MainWindow()
         {
             InitializeComponent();
-
+            Workspace.Instance.Init();
         }
 
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            Workspace.Instance.Close();           
+        }
     }
 }

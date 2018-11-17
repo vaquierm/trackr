@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace trackr
 {
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
