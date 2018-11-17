@@ -34,7 +34,20 @@ namespace trackr
         {
             InitializeComponent();
 
+            // Disable the emotion data aquisitation for when calibrating and chosing the camera
+            CameraController.EmotionCalculationEnabled = false;
             CameraController.NewFrameAcquired += NewFrameHandler;
+            CameraController.StartCapture();
+        }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            //do my stuff before closing
+            CameraController.StopCapture();
+
+            //Re enable the emotion data acquisition for when the session starts
+            CameraController.EmotionCalculationEnabled = true;
+            base.OnClosing(e);
         }
 
         private void NewFrameHandler(object sender, EventArgs e)
@@ -42,8 +55,7 @@ namespace trackr
             if (!(e is NewFrameAcquiredEventArgs frameArgs))
                 return;
 
-
-            // Get the bitmap image
+            // Display the image to the window
             Dispatcher.BeginInvoke(new ThreadStart(delegate
             {
                 frameHolder.Source = frameArgs.Img;
@@ -53,6 +65,11 @@ namespace trackr
         private void configCameraButton_Click(object sender, RoutedEventArgs e)
         {
             CameraController.SwitchCamera();
+        }
+
+        private void doneButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -81,7 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ImageFeedWindow.xaml.cs">
+    <Compile Include="ui\ImageFeedWindow.xaml.cs">
       <DependentUpon>ImageFeedWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="imgProcessing\CameraController.cs" />
@@ -99,7 +99,7 @@
     </Compile>
     <Compile Include="ui\TrackrHomeViewModel.cs" />
     <Compile Include="ui\ViewModelBase.cs" />
-    <Page Include="ImageFeedWindow.xaml">
+    <Page Include="ui\ImageFeedWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
