@@ -74,5 +74,11 @@ namespace trackr
         {
             this.NavigationService.Navigate(new PatientView("Test"));
         }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            ImageFeedWindow imageFeedWindow = new ImageFeedWindow();
+            imageFeedWindow.Show();
+        }
     }
 }
