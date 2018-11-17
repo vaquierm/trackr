@@ -67,6 +67,7 @@
     <Compile Include="ui\PatientView.xaml.cs">
       <DependentUpon>PatientView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ui\PatientViewViewModel.cs" />
     <Compile Include="ui\TrackrHome.xaml.cs">
       <DependentUpon>TrackrHome.xaml</DependentUpon>
     </Compile>
