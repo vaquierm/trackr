@@ -24,6 +24,7 @@ namespace trackr.ui
         public PatientView()
         {
             InitializeComponent();
+            nte.rtb.IsReadOnlyCaretVisible = true;
         }
 
         public PatientView(object o)
@@ -54,12 +55,18 @@ namespace trackr.ui
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            PatientViewViewModel.Instance.StartNewSession(); 
+            PatientViewViewModel.Instance.StartNewSession();
+            btnStart.IsEnabled = false;
+            btnEnd.IsEnabled = true;
+            nte.rtb.IsReadOnlyCaretVisible = false;
         }
         
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
             PatientViewViewModel.Instance.EndCurrentSession();
+            btnStart.IsEnabled = true;
+            btnEnd.IsEnabled = false;
+            nte.rtb.IsReadOnlyCaretVisible = true;
         }
     }
 }

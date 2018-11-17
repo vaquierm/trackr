@@ -24,7 +24,7 @@ namespace trackr.imgProcessing
         private static VideoCaptureDevice Camera;
         private static FilterInfoCollection LoaclWebCamsCollection;
 
-        public static bool EmotionCalculationEnabled { set; get; }
+        public static bool EmotionCalculationEnabled = true;
 
         public static void InitializeToDefaultCamera()
         {
@@ -106,7 +106,7 @@ namespace trackr.imgProcessing
                 var imgArgs = new NewFrameAcquiredEventArgs();
                 imgArgs.Img = bi;
 
-                NewFrameAcquired.Invoke(null, imgArgs);
+                NewFrameAcquired?.Invoke(null, imgArgs);
 
                 // If emotion calculations are required calculate them
                 if (EmotionCalculationEnabled)
@@ -124,7 +124,7 @@ namespace trackr.imgProcessing
 
                         Console.Write(resultEmotionData);
 
-                        NewEmotionDataAvailable.Invoke(null, emotionsEventArgs);
+                        NewEmotionDataAvailable?.Invoke(null, emotionsEventArgs);
                     }
                 }
 
