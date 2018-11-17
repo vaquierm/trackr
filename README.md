@@ -1,4 +1,4 @@
-# trackr
+![trackr logo](https://github.com/vaquierm/trackr/blob/master/imageedit_1_7681779336.png)
 #### CodeJam(2018) submission at McGill University 
 -------------------------------------------------
 
