@@ -10,7 +10,7 @@ namespace trackr.ImageProcessing
     public class EmotionData
     {
         [JsonProperty(PropertyName = "timestamp")]
-        public DateTime TimeStamp { get; set; }
+        public DateTime TimeStamp = DateTime.Now;
 
         [JsonProperty(PropertyName = "anger")]
         public float Anger { get; set; }
@@ -24,7 +24,7 @@ namespace trackr.ImageProcessing
         [JsonProperty(PropertyName = "fear")]
         public float Fear { get; set; }
 
-        [JsonProperty(PropertyName = "hapiness")]
+        [JsonProperty(PropertyName = "happiness")]
         public float Happiness { get; set; }
 
         [JsonProperty(PropertyName = "neutral")]

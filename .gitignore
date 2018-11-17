@@ -1,5 +1,9 @@
-obj/**/*
-bin/
+*.suo
+*.user
+_ReShaper.*
+packages
+obj
+bin
 trackr.sln
-.vs/
+.vs
 *.dll

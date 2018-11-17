@@ -24,7 +24,7 @@
         <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
       <ToolBar x:Name="toolBar" Band="1" BandIndex="1">
-                <Button x:Name="btnSettings" >
+                <Button x:Name="btnSettings" Click="btnSettings_Click" >
           <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
         </Button>
       </ToolBar>

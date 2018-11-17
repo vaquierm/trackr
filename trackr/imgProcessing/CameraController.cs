@@ -14,13 +14,17 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
 using System.Drawing.Imaging;
+using trackr.ImageProcessing;
 
 namespace trackr.imgProcessing
 {
     class CameraController
     {
-        public static VideoCaptureDevice Camera;
-        public static FilterInfoCollection LoaclWebCamsCollection;
+
+        private static VideoCaptureDevice Camera;
+        private static FilterInfoCollection LoaclWebCamsCollection;
+
+        public static bool EmotionCalculationEnabled { set; get; }
 
         public static void InitializeToDefaultCamera()
         {
@@ -28,7 +32,12 @@ namespace trackr.imgProcessing
             Camera = new VideoCaptureDevice(LoaclWebCamsCollection[0].MonikerString);
         }
 
-        public static void SwitchCamera()
+
+        /// <summary>
+        /// Pops us the window to change the selected camera
+        /// </summary>
+        /// <param name="start">Parameter to start the camera capture. Defults to true</param>
+        public static void SwitchCamera(bool start = true)
         {
 
             VideoCaptureDeviceForm form = new VideoCaptureDeviceForm();
@@ -40,28 +49,53 @@ namespace trackr.imgProcessing
                 {
                     // Remove handler and stop camera
                     Camera.NewFrame -= new NewFrameEventHandler(Cam_NewFrame);
-                    Camera.Stop();
+                    StopCapture();
                 }
 
                 Camera = form.VideoDevice;
 
                 //Restart the new camera
                 Camera.NewFrame += new NewFrameEventHandler(Cam_NewFrame);
-                Camera.Start();
+                if (start)
+                    StartCapture();
             }
 
         }
 
+        /// <summary>
+        /// Starts the capture of the selected camera
+        /// </summary>
+        public static void StartCapture()
+        {
+            if (!Camera.IsRunning)
+                Camera.Start();
+            LastEmotionDataTime = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Stops the capture of the selected camera
+        /// </summary>
+        public static void StopCapture()
+        {
+            if (Camera.IsRunning)
+                Camera.Stop();
+        }
+
+
+        private static DateTime LastEmotionDataTime;
+        
         private static void Cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             try
             {
+                // Get the image
                 System.Drawing.Image img = (Bitmap)eventArgs.Frame.Clone();
 
-                MemoryStream ms = new MemoryStream();
+                // Convert the image to bitmap
+                var ms = new MemoryStream();
                 img.Save(ms, ImageFormat.Bmp);
                 ms.Seek(0, SeekOrigin.Begin);
-                BitmapImage bi = new BitmapImage();
+                var bi = new BitmapImage();
                 bi.BeginInit();
                 bi.StreamSource = ms;
                 bi.EndInit();
@@ -72,6 +106,27 @@ namespace trackr.imgProcessing
                 imgArgs.Img = bi;
 
                 NewFrameAcquired.Invoke(null, imgArgs);
+
+                // If emotion calculations are required calculate them
+                if (EmotionCalculationEnabled)
+                {
+                    var currTime = DateTime.Now;
+                    if (currTime - LastEmotionDataTime > new TimeSpan(0, 0, 0, 3, 0))
+                    {
+                        LastEmotionDataTime = currTime;
+
+                        var resultEmotionData = FaceApiController.CalculateEmotions(ImageToByteArray(img));
+
+                        var emotionsEventArgs = new NewEmotionDataEventArgs();
+
+                        emotionsEventArgs.Data = resultEmotionData;
+
+                        Console.Write(resultEmotionData);
+
+                        NewEmotionDataAvailible.Invoke(null, emotionsEventArgs);
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -79,17 +134,38 @@ namespace trackr.imgProcessing
 
         }
 
+        private static byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
+        /// <summary>
+        /// Class used to create hold the image that is currently being captured
+        /// </summary>
         public class NewFrameAcquiredEventArgs : EventArgs
         {
             public BitmapImage Img { get; set; }
         }
 
+        /// <summary>
+        /// Hook onto this event to get the last frame captured
+        /// </summary>
         public static event EventHandler NewFrameAcquired;
 
-        protected virtual void OnNewFrame(EventArgs e)
+        /// <summary>
+        /// Class used to pass the emotiondata through events
+        /// </summary>
+        public class NewEmotionDataEventArgs : EventArgs
         {
-            var handler = NewFrameAcquired;
-            handler(this, e);
+            public EmotionData Data;
         }
+
+        /// <summary>
+        /// Hook onto this event to get emotion data
+        /// </summary>
+        public static event EventHandler NewEmotionDataAvailible;
+
     }
 }

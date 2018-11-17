@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using trackr.imgProcessing;
 
 namespace trackr.ui
 {
@@ -23,6 +24,9 @@ namespace trackr.ui
         public MainWindow()
         {
             InitializeComponent();
+
+            CameraController.InitializeToDefaultCamera();
         }
+
     }
 }

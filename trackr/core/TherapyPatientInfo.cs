@@ -2,13 +2,13 @@
 
 namespace trackr.core
 {
-    public struct TherapyClientInfo
+    public enum Gender { Male, Female, Other }
+    
+    public struct TherapyPatientInfo
     {
-        public enum Gender { Male, Female, Other }
-        
         public string Name { get; set; }
         public string LastName { get; set; }
-        public Gender Sex { get; set; }
+        public Gender Gender { get; set; }
         public DateTime BirthDate { get; set; }
 
         public int Age()
