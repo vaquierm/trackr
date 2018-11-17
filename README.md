@@ -1,8 +1,8 @@
-# trackr
+![team logo](https://github.com/vaquierm/trackr/blob/master/teamLogo.png)  ![trackr logo](https://github.com/vaquierm/trackr/blob/master/small%20trackr.png)
 #### CodeJam(2018) submission at McGill University 
 -------------------------------------------------
 
-**trackr** is an app solution built to help therapists help you. Using trackr, a therapist may track your emotional growth and progress over the course of your visits in a graphical and organized way.
+![teamName](https://github.com/vaquierm/trackr/blob/master/projectNameSmall.png) is an app solution built to help therapists help you. Using trackr, a therapist may track your emotional growth and progress over the course of your visits in a graphical and organized way.
 
 By taking photos of the patients' face in regular intervals, trackr can map the therapist's notes to the precise emotional response of the patient, showing how they react to themes and topics over time.
 
