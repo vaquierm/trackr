@@ -4,17 +4,23 @@
 winexe
 C#
 .cs
-C:\Users\Evan\Documents\trackr\trackr\obj\Debug\
+C:\Users\micha\Documents\Projects\trackr\trackr\obj\Debug\
 trackr
 none
 false
 DEBUG;TRACE
-C:\Users\Evan\Documents\trackr\trackr\App.xaml
-5-96615321
+C:\Users\micha\Documents\Projects\trackr\trackr\App.xaml
+6-835859634
 
+<<<<<<< HEAD
 171724755847
 14-2066057096
 MainWindow.xaml;ui\MainWindow.xaml;ui\NoteTextEditor.xaml;ui\PatientView.xaml;ui\TrackrHome.xaml;
+=======
+18-1662139091
+23-847961684
+ImageFeedWindow.xaml;MainWindow.xaml;ui\MainWindow.xaml;ui\NoteTextEditor.xaml;ui\PatientView.xaml;ui\TrackrHome.xaml;
+>>>>>>> d8b64611b94f0d63a25212ebaacde96e902fe835
 
 False
 
