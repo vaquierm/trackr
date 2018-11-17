@@ -1,0 +1,25 @@
+﻿<Window x:Class="trackr.TrackrHome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:trackr"
+        mc:Ignorable="d"
+        Title="Trackr" Height="450" Width="817.647">
+    <Grid>
+        <Button x:Name="button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="50,50,0,0" Height="80">
+            <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Michael Vaquier"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
+        </Button>
+        <Button x:Name="button2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="50,150,0,0" Height="80">
+            <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Bears Beats Battlestar Gallactica"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
+        </Button>
+        <Button x:Name="button3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="420,50,0,0" Height="80">
+            <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Bears Beats Battlestar Gallactica"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
+        </Button>
+        <Image x:Name="welcomeImage" Visibility="Collapsed" HorizontalAlignment="Left" Height="422" Margin="0,0,0,0" VerticalAlignment="Top" Width="812" Source="../Resources/WelcomeImage.png" Stretch="Fill"/>
+        <Grid>
+            <TextBlock x:Name="welcomeText" Visibility="Collapsed" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Margin="232,99,199.5,227.5"/>
+            <TextBlock x:Name="welcomeText2" Visibility="Collapsed" TextWrapping="Wrap" Text="trackr" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="100" Foreground="White" Margin="278,195,247.5,94.5" Width="287"/>
+        </Grid>
+    </Grid>
+</Window>
