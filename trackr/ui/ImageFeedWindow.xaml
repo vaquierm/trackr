@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:trackr"
         mc:Ignorable="d"
-        Title="Camera Calibration" Height="450" Width="800">
+        Title="Camera Calibration" Height="470" Width="800" ResizeMode="NoResize">
     <Grid>
         <Image HorizontalAlignment="Stretch" Name="frameHolder"  VerticalAlignment="Stretch"  Stretch="Fill"/>
-        <Button x:Name="configCameraButton" Content="Select Camera" HorizontalAlignment="Left" Margin="684,351,0,0" VerticalAlignment="Top" Width="101" Click="configCameraButton_Click" Height="28"/>
-        <Button x:Name="doneButton" Content="Done" HorizontalAlignment="Left" Margin="684,384,0,10.5" Width="101" Click="doneButton_Click" Height="28"/>
+        <Button x:Name="configCameraButton" Content="Select Camera" HorizontalAlignment="Left" Margin="664,317,0,0" VerticalAlignment="Top" Width="101" Click="configCameraButton_Click" Height="28"/>
+        <Button x:Name="doneButton" Content="Done" HorizontalAlignment="Left" Margin="664,350,0,43.5" Width="101" Click="doneButton_Click" Height="28"/>
     </Grid>
 </Window>

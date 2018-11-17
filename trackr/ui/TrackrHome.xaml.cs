@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using trackr.core;
+using trackr.imgProcessing;
 using trackr.ui;
 using Timer = System.Timers.Timer;
 
@@ -39,6 +40,8 @@ namespace trackr
             _welcomeTimer = new Timer(5000);
             _welcomeTimer.Elapsed += this.OnTimedEvent;
             _welcomeTimer.Start();
+
+            CameraController.InitializeToDefaultCamera();
             
             // --------------------- BACKEND TESTS, IGNORE PLS ---------------------------
             //var wrk = new Workspace();
