@@ -23,10 +23,13 @@ namespace trackr.ui
     {
         private const int TimeInterval = 5;
         private DateTime _lastChange;
+        private PatientViewViewModel _viewModel;
         
         public NoteTextEditor()
         {
             _lastChange = DateTime.MinValue;
+            DataContext = PatientViewModelLocator.ViewModel;
+            _viewModel = PatientViewModelLocator.ViewModel;
             InitializeComponent();
         }
 

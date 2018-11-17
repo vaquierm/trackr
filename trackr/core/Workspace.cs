@@ -11,25 +11,35 @@ using Newtonsoft.Json;
 
 namespace trackr.core
 {
-    public class Workspace
+    public sealed class Workspace
     {
-        private readonly TrackrSettings _settings;
+        private static readonly Lazy<Workspace> Lazy =
+        new Lazy<Workspace>(() => new Workspace());
+        
+        public static Workspace Instance => Lazy.Value;
 
-        private readonly List<TherapyPatient> _patients;
+        private TrackrSettings _settings;
+
+        private List<TherapyPatient> _patients;
 
         public TherapyPatient ActivePatient { get; set; }
         
-        public Workspace()
+        private Workspace() {}
+        
+        public void Init()
         {
             _settings = TrackrSettings.Load();
             _patients = new List<TherapyPatient>();
-            Init();                     
-        }
-        
-        private void Init()
-        {
             SetupFileSystem();
             LoadPatients();
+        }
+
+        public void Close()
+        {
+            foreach (var patient in _patients)
+            {
+                SavePatient(patient, false);
+            }
         }
 
         private void SetupFileSystem()
@@ -43,23 +53,21 @@ namespace trackr.core
             }
             else
             {
-                if (!Directory.Exists(_settings.WorkingDirectory))
+                if (Directory.Exists(_settings.WorkingDirectory)) return;
+                var result = MessageBox.Show("The workspace directory does not exist, Do you wish to create it?\n" +
+                                             "Choosing \"no\" will revert to the default working directory",
+                    "Warning",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+                switch (result)
                 {
-                    var result = MessageBox.Show("The workspace directory does not exist, Do you wish to create it?\n" +
-                                                 "Choosing \"no\" will revert to the default working directory",
-                                          "Warning",
-                                          MessageBoxButton.YesNo,
-                                          MessageBoxImage.Warning);
-                    switch (result)
-                    {
-                        case MessageBoxResult.Yes:
-                            Directory.CreateDirectory(_settings.WorkingDirectory);
-                            break;
-                        case MessageBoxResult.No:
-                            _settings.UseDefaultDir = true;
-                            _settings.Save();
-                            break;
-                    }
+                    case MessageBoxResult.Yes:
+                        Directory.CreateDirectory(_settings.WorkingDirectory);
+                        break;
+                    case MessageBoxResult.No:
+                        _settings.UseDefaultDir = true;
+                        _settings.Save();
+                        break;
                 }
             }
         }
@@ -84,6 +92,11 @@ namespace trackr.core
             return _patients.Find(x => x.PatientStringId == id);
         }
 
+        public List<TherapySession> GetTherapySessionsFromStringId(string id)
+        {
+            return _patients.Find(x => x.PatientStringId == id).GetSessions();
+        }
+
         public void AddNewPatient(TherapyPatient newPatient, bool setActive = true)
         {
             _patients.Add(newPatient);
@@ -95,18 +108,14 @@ namespace trackr.core
 
         public void SaveActivePatient(bool openDialog)
         {
+            SavePatient(ActivePatient, openDialog);
+        }
+
+        private void SavePatient(TherapyPatient patient, bool openDialog)
+        {
             var workspacePath = _settings.UseDefaultDir ? _settings.DefaultWorkingDir : _settings.WorkingDirectory;
-            var filename = Path.Combine(workspacePath, ActivePatient.PatientStringId + ".trck");
-            if (openDialog)
-            {
-                var dialog = new SaveFileDialog {Filter = "Trackr file|*.trck", Title = "Save Trackr File", DefaultExt = ".trck"};
-                dialog.ShowDialog();
-                if (dialog.FileName != string.Empty)
-                {
-                    filename = dialog.FileName;
-                }
-            }
-            File.WriteAllText(filename, JsonConvert.SerializeObject(ActivePatient));
+            var filename = Path.Combine(workspacePath, patient.PatientStringId + ".trck");
+            File.WriteAllText(filename, JsonConvert.SerializeObject(patient));
         }
 
         public TherapySession StartNewSession()
@@ -116,10 +125,8 @@ namespace trackr.core
 
         public void EndCurrentSession()
         {
-            var currentSession = ActivePatient.GetActiveSession();
-            currentSession?.EndSession();
+            ActivePatient.EndSession();
             SaveActivePatient(false);
         }
-        
     }
 }

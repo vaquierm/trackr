@@ -57,5 +57,15 @@ namespace trackr.core
             EndDateTime = DateTime.Now;
             SessionRunning = false;
         }
+
+        public Dictionary<DateTime, string> GetNotesDictionary()
+        {
+            return _notesDictionary;
+        }
+        
+        public List<EmotionData> GetEmotionDataList()
+        {
+            return _emotionData;
+        }
     }
 }
