@@ -61,6 +61,11 @@
     <Compile Include="ui\NoteTextEditor.xaml.cs">
       <DependentUpon>NoteTextEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ui\TrackrHome.xaml.cs">
+      <DependentUpon>TrackrHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ui\TrackrHomeViewModel.cs" />
+    <Compile Include="ui\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +86,10 @@
     <Page Include="ui\NoteTextEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ui\TrackrHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +120,12 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WelcomeImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\L3gume\Projects\Trackr\trackr\trackr\obj\Debug\
+C:\Users\L3gume\Projects\Trackr\trackr\trackr\obj\Release\
 trackr
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\L3gume\Projects\Trackr\trackr\trackr\App.xaml
 31092779029
 
-181613360188
+141961567090
 14154763055
 MainWindow.xaml;ui\NoteTextEditor.xaml;ui\TrackrHome.xaml;
 
-False
+True
 
