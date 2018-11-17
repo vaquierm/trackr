@@ -19,7 +19,6 @@ namespace trackr.imgProcessing
 {
     class CameraController
     {
-
         public static VideoCaptureDevice Camera;
         public static FilterInfoCollection LoaclWebCamsCollection;
 
