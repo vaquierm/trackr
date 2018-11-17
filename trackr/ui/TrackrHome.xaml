@@ -6,20 +6,27 @@
         xmlns:local="clr-namespace:trackr"
         mc:Ignorable="d"
         Title="Trackr" Height="450" Width="817.647">
+  <Grid>
+    <Button x:Name="button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="50,50,0,0" Height="80">
+      <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Michael Vaquier"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
+    </Button>
+    <Button x:Name="button2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="50,150,0,0" Height="80">
+      <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Bears Beats Battlestar Gallactica"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
+    </Button>
+    <Button x:Name="button3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="420,50,0,0" Height="80">
+      <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Bears Beats Battlestar Gallactica"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
+    </Button>
+    <Image x:Name="welcomeImage" Visibility="Collapsed" HorizontalAlignment="Left" Height="422" Margin="0,0,0,0" VerticalAlignment="Top" Width="812" Source="../WelcomeImage.png" Stretch="Fill"/>
     <Grid>
-        <Button x:Name="button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="50,50,0,0" Height="80">
-            <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Michael Vaquier"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
-        </Button>
-        <Button x:Name="button2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="50,150,0,0" Height="80">
-            <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Bears Beats Battlestar Gallactica"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
-        </Button>
-        <Button x:Name="button3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="420,50,0,0" Height="80">
-            <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Bears Beats Battlestar Gallactica"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>
-        </Button>
-        <Image x:Name="welcomeImage" Visibility="Collapsed" HorizontalAlignment="Left" Height="422" Margin="0,0,0,0" VerticalAlignment="Top" Width="812" Source="../Resources/WelcomeImage.png" Stretch="Fill"/>
-        <Grid>
-            <TextBlock x:Name="welcomeText" Visibility="Collapsed" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Margin="232,99,199.5,227.5"/>
-            <TextBlock x:Name="welcomeText2" Visibility="Collapsed" TextWrapping="Wrap" Text="trackr" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="100" Foreground="White" Margin="278,195,247.5,94.5" Width="287"/>
-        </Grid>
+      <TextBlock x:Name="welcomeText" Visibility="Collapsed" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Margin="186,82,170.5,205.5" Height="135" Width="456"/>
+      <Image x:Name="trackr" Visibility="Collapsed" HorizontalAlignment="Left" Height="92" Margin="285,236,0,0" VerticalAlignment="Top" Width="253" Source="../trackr.png"/>
     </Grid>
+    <ToolBarTray HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="812">
+      <ToolBar x:Name="toolBar" Band="1" BandIndex="1">
+        <Button>
+          <Image Source="../trackr.png" />
+        </Button>
+      </ToolBar>
+    </ToolBarTray>
+  </Grid>
 </Window>

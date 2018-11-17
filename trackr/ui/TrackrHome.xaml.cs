@@ -49,7 +49,7 @@ namespace trackr
 
             welcomeImage.Visibility = Visibility.Collapsed;
             welcomeText.Visibility = Visibility.Collapsed;
-            welcomeText2.Visibility = Visibility.Collapsed;
+            trackr.Visibility = Visibility.Collapsed;
         }
 
         private void OnTimedEvent(Object source, ElapsedEventArgs e)

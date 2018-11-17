@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("welcomeimage.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("trackr.png")]
 
 
