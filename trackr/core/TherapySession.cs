@@ -6,16 +6,16 @@ namespace trackr.core
 {
     public class TherapySession
     {
-        public TherapyClient TherapyClient { get; set; }
+        public TherapyClientInfo TherapyClientInfo { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
 
         private readonly Dictionary<DateTime, string> _notesDictionary;
         private bool _sessionRunning;
         
-        public TherapySession(TherapyClient client)
+        public TherapySession(TherapyClientInfo clientInfo)
         {
-            TherapyClient = client;
+            TherapyClientInfo = clientInfo;
             StartDateTime = DateTime.Now;
             _sessionRunning = true;
             
