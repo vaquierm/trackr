@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using trackr.ImageProcessing;
 
 namespace trackr.core
 {
@@ -11,6 +12,7 @@ namespace trackr.core
         public DateTime EndDateTime { get; set; }
 
         private readonly Dictionary<DateTime, string> _notesDictionary;
+        private readonly List<EmotionData> _emotionData;
         private bool _sessionRunning;
         
         public TherapySession(TherapyClientInfo clientInfo)
@@ -20,11 +22,17 @@ namespace trackr.core
             _sessionRunning = true;
             
             _notesDictionary = new Dictionary<DateTime, string>();
+            _emotionData = new List<EmotionData>();
         }
 
         public void InsertNote(DateTime timeStamp, string content)
         {
             _notesDictionary.Add(timeStamp, content);
+        }
+
+        public void InsertEmotionData(EmotionData data)
+        {
+            _emotionData.Add(data);
         }
 
         public KeyValuePair<DateTime, string> FindClosestNote(DateTime timeStamp)

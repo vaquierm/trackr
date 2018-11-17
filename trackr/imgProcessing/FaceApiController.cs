@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace trackr.ImageProcessing
 {
-    class FaceApiController
+    public class FaceApiController
     {
         /// <summary>
         /// Subscription key to azure face PAI instance
         /// </summary>
-        private const string _faceAPIKey = "f197462dd3eb415d8c5a8e367efd709c";
+        private const string FaceApiKey = "f197462dd3eb415d8c5a8e367efd709c";
         /// <summary>
         /// API endpoint of azure face api
         /// </summary>
-        private const string _uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?";
+        private const string Uri = "https://westus.api.cognitive.microsoft.com/face/v1.0/detect?";
 
         /// <summary>
         /// Request parameters to specify how much info to extract
         /// </summary>
-        private const string _requestParameters = "returnFaceAttributes=emotion";
+        private const string RequestParameters = "returnFaceAttributes=emotion";
 
         /// <summary>
         /// Compute the emotions expressed in the image and return the emotion data
@@ -35,10 +35,10 @@ namespace trackr.ImageProcessing
         {
             var client = new HttpClient();
 
-            // Add the dubscription of face API to header
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _faceAPIKey);
+            // Add the subscription of face API to header
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", FaceApiKey);
 
-            string uriParameters = _uri + _requestParameters;
+            var uriParameters = Uri + RequestParameters;
 
             HttpResponseMessage response;
             string responseContent;
@@ -76,10 +76,10 @@ namespace trackr.ImageProcessing
 
         }
 
-        static public byte[] GetImageAsByteArray(string imageFilePath)
+        public static byte[] GetImageAsByteArray(string imageFilePath)
         {
-            FileStream fileStream = new FileStream(imageFilePath, FileMode.Open, FileAccess.Read);
-            BinaryReader binaryReader = new BinaryReader(fileStream);
+            var fileStream = new FileStream(imageFilePath, FileMode.Open, FileAccess.Read);
+            var binaryReader = new BinaryReader(fileStream);
             return binaryReader.ReadBytes((int)fileStream.Length);
         }
 

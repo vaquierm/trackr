@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace trackr.ImageProcessing
 {
-    class EmotionData
+    public class EmotionData
     {
         [JsonProperty(PropertyName = "timestamp")]
-        public DateTime Timestamp = new DateTime();
+        public DateTime TimeStamp { get; set; }
 
         [JsonProperty(PropertyName = "anger")]
         public float Anger { get; set; }

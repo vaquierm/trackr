@@ -11,7 +11,6 @@ namespace trackr.core
         public Gender Sex { get; set; }
         public DateTime BirthDate { get; set; }
 
-
         public int Age()
         {
             var now = DateTime.Today;
