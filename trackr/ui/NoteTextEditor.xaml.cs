@@ -35,17 +35,17 @@ namespace trackr.ui
             DataContext = PatientViewViewModel.Instance;
             _viewModel = PatientViewViewModel.Instance;
             InitializeComponent();
-            _saveTimer = new Timer(5000) {AutoReset = true};
+            _saveTimer = new Timer(3000) {AutoReset = true};
             _saveTimer.Elapsed += OnTimedEvent;
             _saveTimer.Start();
         }
 
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
-            _saveTimer.Stop();
+            /*_saveTimer.Stop();
             var text = new TextRange(rtb.Document.Blocks.LastBlock.ContentStart, rtb.Document.Blocks.LastBlock.ContentEnd);
             _viewModel.SendNoteToWorkspace(text.Text);
-            _saveTimer.Start();
+            _saveTimer.Start();*/
         }
 
         private void Rtb_OnKeyDown_(object sender, KeyEventArgs e)

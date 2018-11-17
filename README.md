@@ -6,7 +6,7 @@
 
 By taking photos of the patients' face in regular intervals, trackr can map the therapist's notes to the precise emotional response of the patient, showing how they react to themes and topics over time.
 
-Even more value is introduced in the event that a patient must change therapists; an accurate, unbiased rendition of the patient's responses could be passed on to help the new doctor build an intimate working relaltionship with the patient.
+Even more value is introduced in the event that a patient must change therapists; an accurate, unbiased rendition of the patient's responses could be passed on to help the new doctor build an intimate working relationship with the patient.
 
 --------------------------------------------------
 

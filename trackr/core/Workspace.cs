@@ -159,7 +159,9 @@ namespace trackr.core
             {
                 return;
             }
-            if (ActivePatient.GetSessions().Any() && !ActivePatient.GetActiveSession().SessionRunning)
+            if (ActivePatient.GetSessions().Any() 
+                && ActivePatient.GetActiveSession() != null
+                && !ActivePatient.GetActiveSession().SessionRunning)
             {
                 return;
             }
