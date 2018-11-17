@@ -21,7 +21,17 @@ namespace trackr.ui
 
         public string ActivePatientLastDate
         {
-            get => Workspace.Instance.ActivePatient?.GetSessions().Last().StartDateTime.ToShortDateString();
+            get
+            {
+                try
+                {
+                    return Workspace.Instance.ActivePatient?.GetSessions().Last().StartDateTime.ToShortDateString();
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
         }
 
         public string ActivePatientName
