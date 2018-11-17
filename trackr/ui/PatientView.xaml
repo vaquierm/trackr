@@ -4,22 +4,35 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:trackr.ui"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:controls="clr-namespace:trackr.ui"
       Title="PatientView" Loaded="Page_Loaded">
-    <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100">
-            <TabItem Header="Overview">
+    <Grid Width="{Binding ActualWidth, 
+              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" 
+            Height="{Binding ActualHeight, 
+              RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}">
+        <UniformGrid Columns="3" Margin="5,0">
+            <FrameworkElement x:Name="c1"/>
+        </UniformGrid>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    Height="{Binding ActualHeight, RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}">
+            <TabItem Header="Overview" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left"
+                               Margin="10"
+                               TextWrapping="Wrap"
+                               Text="Take pictures of me and put them on the Internet. Meow."
+                               VerticalAlignment="Top"/>
+                    <controls:EmotionChart x:Name="chart" Margin="0,0,30,45"></controls:EmotionChart>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Sessions" Width="{Binding ElementName=c1, Path=ActualWidth}">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Sessions">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="New" RenderTransformOrigin="4.383,6.01">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="New" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid Background="#FFE5E5E5">
+                    <controls:NoteTextEditor x:Name="nte"></controls:NoteTextEditor>
+                </Grid>
             </TabItem>
         </TabControl>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="133,298,0,0" TextWrapping="Wrap" Text="HELLO THIS IS A TEST" VerticalAlignment="Top"/>
-
     </Grid>
 </Page>

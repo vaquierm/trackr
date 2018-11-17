@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -14,7 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using trackr.core;
 using trackr.ui;
+using Timer = System.Timers.Timer;
 
 namespace trackr
 {
@@ -23,19 +26,27 @@ namespace trackr
     /// </summary>
     public partial class TrackrHome : Page
     {
-        private readonly TrackrHomeViewModel viewModel;
-        private Timer welcomeTimer;
+        private readonly TrackrHomeViewModel _viewModel;
+        private readonly Timer _welcomeTimer;
 
         public TrackrHome()
         {
-            viewModel = new TrackrHomeViewModel();
-            this.DataContext = viewModel;
+            _viewModel = new TrackrHomeViewModel();
+            this.DataContext = _viewModel;
 
             InitializeComponent();
 
-            welcomeTimer = new Timer(5000);
-            welcomeTimer.Elapsed += this.OnTimedEvent;
-            welcomeTimer.Start();
+            _welcomeTimer = new Timer(5000);
+            _welcomeTimer.Elapsed += this.OnTimedEvent;
+            _welcomeTimer.Start();
+            
+            // --------------------- BACKEND TESTS, IGNORE PLS ---------------------------
+            //var wrk = new Workspace();
+            //wrk.AddNewPatient(new TherapyPatient("Dummy", "McDummyFace", Gender.Other, DateTime.Today));
+            /*wrk.ActivePatient.NewSession();
+            Thread.Sleep(5000);
+            wrk.ActivePatient.EndSession();
+            wrk.SaveActivePatient(false);*/
         }
 
         private void FadeWelcomeScreen()
@@ -52,14 +63,11 @@ namespace trackr
             trackr.Visibility = Visibility.Collapsed;
         }
 
-        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            Dispatcher.Invoke(DispatcherPriority.Background, (Action)delegate ()
-            {
-                FadeWelcomeScreen();
-            });
+            Dispatcher.Invoke(DispatcherPriority.Background, (Action)FadeWelcomeScreen);
 
-            welcomeTimer.Stop();
+            _welcomeTimer.Stop();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

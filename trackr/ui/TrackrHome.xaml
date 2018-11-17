@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:trackr"
         mc:Ignorable="d"
-        Title="Trackr" Height="450" Width="817.647">
+        Title="Trackr">
   <Grid>
     <Button x:Name="button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.185,3.006" Margin="50,50,0,0" Height="80" Click="button_Click">
       <TextBlock HorizontalAlignment="Center" Height="70" Width="340" FontSize="24"><Run Text="Michael Vaquier"/><LineBreak/><Run Text="Next: 16/11/2018"/></TextBlock>

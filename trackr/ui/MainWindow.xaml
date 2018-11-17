@@ -5,5 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:trackr.ui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Source="TrackrHome.xaml" ShowsNavigationUI="False">
+        Title="trackr" WindowState="Maximized" Source="TrackrHome.xaml" ShowsNavigationUI="False">
 </NavigationWindow>

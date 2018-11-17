@@ -26,7 +26,6 @@ namespace trackr.imgProcessing
 
         public static bool EmotionCalculationEnabled { set; get; }
 
-
         public static void InitializeToDefaultCamera()
         {
             LoaclWebCamsCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
