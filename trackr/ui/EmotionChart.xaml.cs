@@ -90,6 +90,11 @@ namespace trackr.ui
 
         public void UpdateSeriesPatientBasis(TherapyPatient patient)
         {
+            if (patient == null || patient.GetSessions() == null)
+            {
+                return;
+            }
+
             foreach (LineSeries series in Series)
             {
                 series.Values.Clear();
@@ -176,6 +181,11 @@ namespace trackr.ui
 
         public void UpdateSeriesSessionBasis(TherapySession session)
         {
+            if (session == null)
+            {
+                return;
+            }
+
             List<EmotionData> emotionData = session.GetEmotionDataList();
 
             // Anger

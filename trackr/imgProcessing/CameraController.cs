@@ -30,6 +30,7 @@ namespace trackr.imgProcessing
         {
             LoaclWebCamsCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             Camera = new VideoCaptureDevice(LoaclWebCamsCollection[0].MonikerString);
+            Camera.NewFrame += new NewFrameEventHandler(Cam_NewFrame);
         }
 
 

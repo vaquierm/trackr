@@ -23,13 +23,13 @@ namespace trackr.ui
     {
         private const int TimeInterval = 5;
         private DateTime _lastChange;
-        private PatientViewViewModel _viewModel;
+        private readonly PatientViewViewModel _viewModel;
         
         public NoteTextEditor()
         {
             _lastChange = DateTime.MinValue;
-            DataContext = PatientViewModelLocator.ViewModel;
-            _viewModel = PatientViewModelLocator.ViewModel;
+            DataContext = PatientViewViewModel.Instance;
+            _viewModel = PatientViewViewModel.Instance;
             InitializeComponent();
         }
 
@@ -52,12 +52,15 @@ namespace trackr.ui
             var deltaTime = DateTime.Now.Subtract(_lastChange);
             if (deltaTime.Seconds > TimeInterval)
             {
+                
+                // TODO: Send note to viewModel to save it
+                _viewModel.SendNoteToWorkspace(rtb.Document.Blocks.LastBlock.ToString());
+                
                 rtb.AppendText("\n" + DateTime.Now.ToString(CultureInfo.InvariantCulture) + " : ");
                 rtb.CaretPosition = rtb.Document.Blocks.LastBlock.ContentEnd;
             }
             _lastChange = DateTime.Now;
             
-            // TODO: Send note to viewModel to save it
 
             // Start new block and place caret
             // rtb.AppendText(e.Key.ToString());

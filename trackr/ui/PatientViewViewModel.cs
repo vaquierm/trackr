@@ -9,6 +9,12 @@ namespace trackr.ui
 {
     public class PatientViewViewModel : ViewModelBase
     {
+        private static readonly Lazy<PatientViewViewModel> Lazy =
+        new Lazy<PatientViewViewModel>(() => new PatientViewViewModel());
+        
+        public static PatientViewViewModel Instance => Lazy.Value;
+        private PatientViewViewModel() {}
+        
         public event EventHandler Closing;
 
         public System.Collections.ObjectModel.ObservableCollection<List<string>> strings { get; set; }
@@ -28,6 +34,10 @@ namespace trackr.ui
         
         #endregion
 
+        public void SendNoteToWorkspace(string rawNote)
+        {
+
+        }
 
         public void Close()
         {

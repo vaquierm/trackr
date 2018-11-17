@@ -103,7 +103,6 @@
     <Compile Include="ui\PatientView.xaml.cs">
       <DependentUpon>PatientView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ui\PatientViewModelLocator.cs" />
     <Compile Include="ui\PatientViewViewModel.cs" />
     <Compile Include="ui\ReverseConverter.cs" />
     <Compile Include="ui\TrackrHome.xaml.cs">

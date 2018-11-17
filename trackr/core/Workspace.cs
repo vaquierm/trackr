@@ -17,6 +17,7 @@ namespace trackr.core
         new Lazy<Workspace>(() => new Workspace());
         
         public static Workspace Instance => Lazy.Value;
+        private Workspace() {}
 
         private TrackrSettings _settings;
 
@@ -24,7 +25,6 @@ namespace trackr.core
 
         public TherapyPatient ActivePatient { get; set; }
         
-        private Workspace() {}
         
         public void Init()
         {
