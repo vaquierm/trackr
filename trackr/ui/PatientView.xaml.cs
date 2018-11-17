@@ -32,6 +32,8 @@ namespace trackr.ui
             InitializeComponent();
 
             patient = (string)o;
+
+            chart.UpdateSeries(patient);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

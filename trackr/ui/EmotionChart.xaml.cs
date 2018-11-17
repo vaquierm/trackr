@@ -85,5 +85,52 @@ namespace trackr.ui
                 ? Visibility.Hidden
                 : Visibility.Visible;
         }
+
+        public void UpdateSeries(string s)
+        {
+            Series = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Anger"
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Contempt"
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Disgust"
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Fear"
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Happiness"
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Neutral"
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Sadness"
+                },
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {13, 12, 25, 20, 50, 10},
+                    Title = "Surprise"
+                }
+            };
+        }
     }
 }
