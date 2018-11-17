@@ -53,6 +53,7 @@ namespace trackr
             //ws.AddNewPatient(new TherapyPatient("Evan", "Duboi", Gender.Male, DateTime.Today));
             //ws.AddNewPatient(new TherapyPatient("GabGab", "Duboi", Gender.Female, DateTime.Today));
             //ws.AddNewPatient(new TherapyPatient("JT", "Duboi", Gender.Male, DateTime.Today));
+            //ws.ActivePatient = ws.GetPatients().ElementAt(0);
             //ws.StartNewSession();
             //Thread.Sleep(5000);
             //ws.ActivePatient.EndSession();

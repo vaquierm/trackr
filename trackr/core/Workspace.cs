@@ -35,8 +35,8 @@ namespace trackr.core
             LoadPatients();
             
             // TEST PURPOSES
-            PatientViewViewModel.Instance.ActivePatient = _patients.First();
-            PatientViewViewModel.Instance.ActivePatient.NewSession();
+            //PatientViewViewModel.Instance.ActivePatient = _patients.First();
+            //PatientViewViewModel.Instance.ActivePatient.NewSession();
             // TEST PURPOSES
             
         }
@@ -152,6 +152,9 @@ namespace trackr.core
         
         public void EndCurrentSession()
         {
+            if (ActivePatient?.GetActiveSession() == null)
+                return;
+
             if (!ActivePatient.GetSessions().Any())
             {
                 return;

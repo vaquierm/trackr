@@ -24,9 +24,6 @@ namespace trackr.ui
     /// </summary>
     public partial class EmotionChart : UserControl
     {
-        public Visibility monthVisibility { get; set; }
-        public Visibility yearlyVisibility { get; set; }
-
         public EmotionChart()
         {
             InitializeComponent();
@@ -76,6 +73,9 @@ namespace trackr.ui
             };
 
             DataContext = this;
+
+            monthTB.Opacity = 1D;
+            yearTB.Opacity = 0.2D;
         }
 
         public SeriesCollection Series { get; set; }
@@ -91,30 +91,29 @@ namespace trackr.ui
                 : Visibility.Visible;
         }
 
-        private void ListBox2_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void MonthYearVisibility_Click(object sender, MouseButtonEventArgs e)
         {
-            var item = ItemsControl.ContainerFromElement(ListBox, (DependencyObject)e.OriginalSource) as ListBoxItem;
-            if (item == null) return;
+            if (!(sender is TextBlock item)) return;
 
-            if (item.Content.ToString() == "Yearly")
+            if (item.Text == "Yearly")
             {
-                if (yearlyVisibility == Visibility.Hidden)
-                {
-                    UpdateSeriesPatientBasisYearly(Workspace.Instance.ActivePatient);
+                if (yearTB.Opacity == 1D)
+                    return;
 
-                    yearlyVisibility = Visibility.Visible;
-                    monthVisibility = Visibility.Hidden;
-                }
+                UpdateSeriesPatientBasisYearly(Workspace.Instance.ActivePatient);
+
+                yearTB.Opacity = 1D;
+                monthTB.Opacity = 0.2D;
             }
             else
             {
-                if (monthVisibility == Visibility.Hidden)
-                {
-                    UpdateSeriesPatientBasisMonthly(Workspace.Instance.ActivePatient);
+                if (monthTB.Opacity == 1D)
+                    return;
 
-                    yearlyVisibility = Visibility.Hidden;
-                    monthVisibility = Visibility.Visible;
-                }
+                UpdateSeriesPatientBasisMonthly(Workspace.Instance.ActivePatient);
+
+                monthTB.Opacity = 1D;
+                yearTB.Opacity = 0.2D;
             }
         }
 
