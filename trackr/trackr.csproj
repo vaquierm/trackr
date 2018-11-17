@@ -67,8 +67,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="core\AppSettings.cs" />
+    <Compile Include="core\EmotionData.cs" />
     <Compile Include="core\TherapyClientInfo.cs" />
     <Compile Include="core\TherapySession.cs" />
+    <Compile Include="imgProcessing\FaceApiController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
