@@ -30,6 +30,8 @@ namespace trackr
         private readonly TrackrHomeViewModel _viewModel;
         private readonly Timer _welcomeTimer;
 
+        private List<IdContainerButton> patientButtons;
+
         public TrackrHome()
         {
             _viewModel = new TrackrHomeViewModel();
@@ -41,8 +43,25 @@ namespace trackr
             _welcomeTimer.Elapsed += this.OnTimedEvent;
             _welcomeTimer.Start();
 
+            // Initialize the camera controller
             CameraController.InitializeToDefaultCamera();
-            
+
+            InitializePatientButtons();
+
+            //var ws = Workspace.Instance;
+            //ws.AddNewPatient(new TherapyPatient("Michael", "Duboi", Gender.Male, DateTime.Today));
+            //ws.AddNewPatient(new TherapyPatient("Evan", "Duboi", Gender.Male, DateTime.Today));
+            //ws.AddNewPatient(new TherapyPatient("GabGab", "Duboi", Gender.Female, DateTime.Today));
+            //ws.AddNewPatient(new TherapyPatient("JT", "Duboi", Gender.Male, DateTime.Today));
+            //ws.StartNewSession();
+            //Thread.Sleep(5000);
+            //ws.ActivePatient.EndSession();
+
+
+
+
+
+
             // --------------------- BACKEND TESTS, IGNORE PLS ---------------------------
             //var wrk = new Workspace();
             //wrk.AddNewPatient(new TherapyPatient("Dummy", "McDummyFace", Gender.Other, DateTime.Today));
@@ -50,6 +69,48 @@ namespace trackr
             Thread.Sleep(5000);
             wrk.ActivePatient.EndSession();
             wrk.SaveActivePatient(false);*/
+        }
+
+        private void InitializePatientButtons()
+        {
+            //Create the list of buttons to keep show on the panel
+            patientButtons = new List<IdContainerButton>();
+
+            // Create a button for each patient
+            bool first = true;
+            foreach (TherapyPatient patient in Workspace.Instance.GetPatients())
+            {
+                var patientButton = new IdContainerButton();
+                patientButton.ID = patient.PatientStringId;
+                patientButton.Click += patientButton_Click;
+                patientButton.Height = 80;
+                patientButton.Width = System.Windows.SystemParameters.PrimaryScreenWidth - 50;
+                patientButton.HorizontalAlignment = HorizontalAlignment.Left;
+                patientButton.VerticalAlignment = VerticalAlignment.Top;
+                if (first)
+                {
+                    patientButton.Margin = new Thickness(20, 60, 20, 10);
+                    first = false;
+                }
+                else
+                {
+                    patientButton.Margin = new Thickness(20, 10, 20, 10);
+                }
+                var patientText = new TextBlock
+                {
+                    Height = 70,
+                    Width = 340,
+                    FontSize = 24,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    TextAlignment = TextAlignment.Center,
+                    Text = patient.Info.Name + " " + patient.Info.LastName + "\n" + patient.Info.BirthDate
+                };
+                patientButton.Content = patientText;
+
+                patientButtons.Add(patientButton);
+            }
+
+            patientsControl.ItemsSource = patientButtons;
         }
 
         private void FadeWelcomeScreen()
@@ -82,6 +143,14 @@ namespace trackr
         {
             ImageFeedWindow imageFeedWindow = new ImageFeedWindow();
             imageFeedWindow.Show();
+        }
+
+        private void patientButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is IdContainerButton button))
+                return;
+
+            this.NavigationService.Navigate(new PatientView(button.ID));
         }
     }
 }
