@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Evan\Documents\trackr\trackr\App.xaml
-31092779029
+5-96615321
 
-141961567090
+16490237840
 14-2066057096
-MainWindow.xaml;ui\NoteTextEditor.xaml;ui\TrackrHome.xaml;
+MainWindow.xaml;ui\MainWindow.xaml;ui\NoteTextEditor.xaml;ui\PatientView.xaml;ui\TrackrHome.xaml;
 
 False
 

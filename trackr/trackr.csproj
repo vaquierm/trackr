@@ -58,8 +58,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ui\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ui\NoteTextEditor.xaml.cs">
       <DependentUpon>NoteTextEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ui\PatientView.xaml.cs">
+      <DependentUpon>PatientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ui\TrackrHome.xaml.cs">
       <DependentUpon>TrackrHome.xaml</DependentUpon>
@@ -83,7 +89,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ui\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ui\NoteTextEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ui\PatientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,7 +21,7 @@ namespace trackr
     /// <summary>
     /// Interaction logic for TrackrHome.xaml
     /// </summary>
-    public partial class TrackrHome : Window
+    public partial class TrackrHome : Page
     {
         private readonly TrackrHomeViewModel viewModel;
         private Timer welcomeTimer;
@@ -60,6 +60,11 @@ namespace trackr
             });
 
             welcomeTimer.Stop();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new PatientView("Test"));
         }
     }
 }

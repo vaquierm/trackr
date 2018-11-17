@@ -44,3 +44,7 @@ C:\Users\Evan\Documents\trackr\trackr\obj\Debug\trackr.csproj.CoreCompileInputs.
 C:\Users\Evan\Documents\trackr\trackr\obj\Debug\trackr.csproj.CopyComplete
 C:\Users\Evan\Documents\trackr\trackr\obj\Debug\trackr.exe
 C:\Users\Evan\Documents\trackr\trackr\obj\Debug\trackr.pdb
+C:\Users\Evan\Documents\trackr\trackr\obj\Debug\ui\PatientView.g.cs
+C:\Users\Evan\Documents\trackr\trackr\obj\Debug\ui\PatientView.baml
+C:\Users\Evan\Documents\trackr\trackr\obj\Debug\ui\MainWindow.g.cs
+C:\Users\Evan\Documents\trackr\trackr\obj\Debug\ui\MainWindow.baml
