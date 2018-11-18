@@ -84,6 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="core\Note.cs" />
     <Compile Include="core\TherapyPatient.cs" />
     <Compile Include="core\Workspace.cs" />
     <Compile Include="ui\IdContainerButton.cs" />
