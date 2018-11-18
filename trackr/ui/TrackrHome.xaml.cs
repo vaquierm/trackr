@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -39,20 +40,31 @@ namespace trackr
 
             InitializeComponent();
 
-            _welcomeTimer = new Timer(5000);
-            _welcomeTimer.Elapsed += this.OnTimedEvent;
-            _welcomeTimer.Start();
+            if (MainWindow.firstOpen)
+            {
+                _welcomeTimer = new Timer(2000);
+                _welcomeTimer.Elapsed += this.OnTimedEvent;
+                _welcomeTimer.Start();
+            }
+            else
+            {
+                welcomeImage.Visibility = Visibility.Collapsed;
+                welcomeText.Visibility = Visibility.Collapsed;
+                trackr.Visibility = Visibility.Collapsed;
+
+                toolbar.Visibility = Visibility.Visible;
+            }
 
             // Initialize the camera controller
             CameraController.InitializeToDefaultCamera();
 
-            InitializePatientButtons();
+            RefreshPatientButtons();
 
 
 
             // ----------------------------- UNCOMMENT TO CREATE PATIENTS -----------------------------------
             //var ws = Workspace.Instance;
-
+            
             //ws.AddNewPatient(new TherapyPatient("Tamara", "Hendrix", Gender.Female, new DateTime(1988, 05, 12)));
             //ws.AddNewPatient(new TherapyPatient("George", "Weirsma", Gender.Male, new DateTime(1992, 05, 12)));
             //ws.AddNewPatient(new TherapyPatient("Jared", "Peelee", Gender.Other, new DateTime(1980, 05, 12)));
@@ -60,19 +72,11 @@ namespace trackr
             //int i = 1;
             //foreach (TherapyPatient patient in ws.GetPatients())
             //{
-            //    patient.GenerateTherapySessionData(2018, i++);
+            //    patient.GenerateTherapySessionData(2018, i);
             //}
-
-            // --------------------- BACKEND TESTS, IGNORE PLS ---------------------------
-            //var wrk = new Workspace();
-            //Workspace.Instance.AddNewPatient(new TherapyPatient("Dummy", "McDummyFace", Gender.Other, DateTime.Today));
-            /*wrk.ActivePatient.NewSession();
-            Thread.Sleep(5000);
-            wrk.ActivePatient.EndSession();
-            wrk.SaveActivePatient(false);*/
         }
 
-        private void InitializePatientButtons()
+        public void RefreshPatientButtons()
         {
             //Create the list of buttons to keep show on the panel
             patientButtons = new List<IdContainerButton>();
@@ -88,6 +92,7 @@ namespace trackr
                 patientButton.Width = System.Windows.SystemParameters.PrimaryScreenWidth - 50;
                 patientButton.HorizontalAlignment = HorizontalAlignment.Left;
                 patientButton.VerticalAlignment = VerticalAlignment.Top;
+                patientButton.Background = Brushes.CadetBlue;
                 if (first)
                 {
                     patientButton.Margin = new Thickness(20, 60, 20, 10);
@@ -110,7 +115,11 @@ namespace trackr
                     FontSize = 24,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     TextAlignment = TextAlignment.Center,
-                };
+                    Foreground = Brushes.White,
+                    FontWeight = FontWeights.DemiBold,
+                //Text = patient.Info.Name + " " + patient.Info.LastName + "\t\tLast Session: " + "\t\tMNext Session:"  + "\nAge:" + patient.Info.Age() + "\t\t" + lastSession
+                //+ "\t\t" + "Next"
+            };
 
                 patientText.Inlines.Add(new Run
                 {
@@ -121,12 +130,6 @@ namespace trackr
                 {
                     Text = "Age: " + patient.Info.Age() + "\t\t\t" + lastSession + "\t\t\t" + "Next"
                 });
-
-                var grid = new Grid();
-
-                
-
-
                 patientButton.Content = patientText;
 
                 patientButtons.Add(patientButton);
@@ -137,16 +140,43 @@ namespace trackr
 
         private void FadeWelcomeScreen()
         {
-            //for (int i = 1; i < 100; i++)
-            //{
-            //    welcomeImage.Opacity = i;
-            //    welcomeText.Opacity = i;
-            //    welcomeText2.Opacity = i;
-            //}
+            DoubleAnimation da = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                Duration = new Duration(TimeSpan.FromSeconds(1.5)),
+                AutoReverse = false
+            };
+            da.Completed += anim1_Complete;
 
-            welcomeImage.Visibility = Visibility.Collapsed;
-            welcomeText.Visibility = Visibility.Collapsed;
-            trackr.Visibility = Visibility.Collapsed;
+            welcomeImage.BeginAnimation(OpacityProperty, da);
+            welcomeText.BeginAnimation(OpacityProperty, da);
+            trackr.BeginAnimation(OpacityProperty, da);
+
+            toolbar.Visibility = Visibility.Visible;
+
+            MainWindow.firstOpen = false;
+        }
+
+        void anim1_Complete(object sender, EventArgs e)
+        {
+            welcomeImage.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                welcomeImage.Visibility = Visibility.Collapsed;
+            }));
+            welcomeText.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                welcomeText.Visibility = Visibility.Collapsed;
+            }));
+            trackr.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                trackr.Visibility = Visibility.Collapsed;
+            }));
+
+            toolbar.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                toolbar.Visibility = Visibility.Visible;
+            }));
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -173,6 +203,12 @@ namespace trackr
                 return;
 
             this.NavigationService.Navigate(new PatientView(button.ID));
+        }
+
+        private void newPatientButton_Click(object sender, RoutedEventArgs e)
+        {
+            var newPatientForm = new NewPatientForm(this);
+            newPatientForm.Show();
         }
     }
 }

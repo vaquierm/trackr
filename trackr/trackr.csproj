@@ -99,6 +99,9 @@
     <Compile Include="ui\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ui\NewPatientForm.xaml.cs">
+      <DependentUpon>NewPatientForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ui\NoteTextEditor.xaml.cs">
       <DependentUpon>NoteTextEditor.xaml</DependentUpon>
     </Compile>
@@ -131,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ui\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ui\NewPatientForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,9 +186,18 @@
   <ItemGroup>
     <Resource Include="WelcomeImage.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="back.png" />
+    <Resource Include="settings.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="trackr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo_name.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="squiggleIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
