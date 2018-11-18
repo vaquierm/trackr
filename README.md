@@ -37,4 +37,9 @@ Gabrielle Doucette-Poirier | Project Management | :heart_eyes_cat:
 ![liveSession](https://github.com/vaquierm/trackr/blob/master/liveSession.PNG)
 
 ![sessionView](https://github.com/vaquierm/trackr/blob/master/sessionView.PNG)
-
+---------------------------------------------------
+#### Want to try it out?
+1. Download our great project zip
+2. Unpack it and install (instructions are included in the zip!)
+3. That's it. You're done. Happy browsing!
+--------------------------------------------------
