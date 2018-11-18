@@ -5,30 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:trackr.ui"
       xmlns:controls="clr-namespace:trackr.ui"
-      Title="PatientView">
+      Title="PatientView" Background="Azure">
     <Grid Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" 
             Height="{Binding ActualHeight, 
               RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}">
+        <ItemsControl x:Name="NoteControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding ButtonContent}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <UniformGrid Columns="3" Margin="5,0">
             <FrameworkElement x:Name="c1"/>
         </UniformGrid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 30 0 0"
+        <TabControl x:Name="tabControl" Background="Azure" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 30 0 0"
                     Height="{Binding ActualHeight, RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}">
-            <TabItem Header="Overview" Width="{Binding ElementName=c1, Path=ActualWidth}">
-                <Grid Background="#FFE5E5E5">
+            <TabItem Header="Overview" Background="CadetBlue" FontWeight="DemiBold" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid Background="Azure">
                     <TextBlock x:Name="textBlockName" HorizontalAlignment="Left"
-                               Margin="10"
-                               TextWrapping="Wrap"
+                               Margin="33,10,0,0"
+                               TextWrapping="Wrap" FontSize="42" FontWeight="DemiBold"
                                Text="{Binding Path=ActivePatientName}"
-                               VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlockLast" HorizontalAlignment="Left" Margin="77,59,0,0" TextWrapping="Wrap" Text="{Binding Path=ActivePatientLastDate}" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlockNext" HorizontalAlignment="Left" Margin="79,105,0,0" TextWrapping="Wrap" Text="{Binding Path=ActivePatientNextDate}" VerticalAlignment="Top"/>
+                               VerticalAlignment="Top" Width="340"/>
+                    <TextBlock x:Name="textBlockLast" FontSize="32" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="33,665,0,-459.5" TextWrapping="Wrap" Text="{Binding Path=ActivePatientLastDate}" VerticalAlignment="Top" Width="340"/>
+                    <TextBlock x:Name="textBlockNext" FontSize="32" FontWeight="DemiBold" HorizontalAlignment="Left" Margin="33,755,0,-549.5" TextWrapping="Wrap" Text="{Binding Path=ActivePatientNextDate}" VerticalAlignment="Top" Width="340"/>
                     <controls:EmotionChart x:Name="chart" UsePatientBasis="True" Margin="400,45,55.5,70"></controls:EmotionChart>
                 </Grid>
             </TabItem>
-            <TabItem Header="Sessions" Width="{Binding ElementName=c1, Path=ActualWidth}">
-                <Grid Background="#FFE5E5E5">
+
+            <TabItem Header="Sessions" Background="CadetBlue" FontWeight="DemiBold" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid Background="Azure">
                     <ComboBox ItemsSource="{Binding Path=ActivePatientSessions}" Height="30" Width="200" Margin="0,0,749,370">
                         <ComboBox.ItemContainerStyle>
                             <Style>
@@ -43,8 +51,8 @@
                     <controls:EmotionChart x:Name="chart2" UsePatientBasis="False" Margin="473,45,55.5,80"></controls:EmotionChart>
                 </Grid>
             </TabItem>
-            <TabItem Header="New" Width="{Binding ElementName=c1, Path=ActualWidth}">
-                <Grid Background="#FFE5E5E5">
+            <TabItem Header="New" Background="CadetBlue" FontWeight="DemiBold" Width="{Binding ElementName=c1, Path=ActualWidth}">
+                <Grid Background="Azure">
                     <controls:NoteTextEditor x:Name="nte" />
                     <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
                           RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
@@ -56,14 +64,14 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
-              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
-            <ToolBar x:Name="toolBar" Band="1" BandIndex="1">
+        <ToolBarTray HorizontalAlignment="Left" IsLocked="True" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
+              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Background="#373545">
+            <ToolBar x:Name="toolBar" Band="1" BandIndex="1" Background="#373545">
                 <Button x:Name="btnBack" Click="btnBack_Click" >
-                    <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100" HorizontalAlignment="Left"/>
+                    <Image Source="../back.png" Stretch="Fill" Height="20" Width="20" HorizontalAlignment="Left"/>
                 </Button>
                 <Button x:Name="btnSettings" Click="btnSettings_Click" HorizontalAlignment="Right">
-                    <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
+                    <Image Source="../settings.png" Stretch="Fill" Height="20" Width="20"/>
                 </Button>
             </ToolBar>
         </ToolBarTray>

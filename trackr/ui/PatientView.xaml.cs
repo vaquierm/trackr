@@ -31,8 +31,12 @@ namespace trackr.ui
             this.DataContext = PatientViewViewModel.Instance;
 
             var patient = Workspace.Instance.GetTherapyPatientFromStringId((string)o);
-
+            Workspace.Instance.ActivePatient = patient;
             PatientViewViewModel.Instance.ActivePatient = patient;
+            if (patient.GetSessions().Any())
+            {
+                PatientViewViewModel.Instance.SelectedSession = patient.GetSessions()?.First();
+            }
 
             InitializeComponent();
 
@@ -75,9 +79,15 @@ namespace trackr.ui
             PatientViewViewModel.Instance.EndCurrentSession();
         }
 
-        void cmbItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void SessionsComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            chart2.UpdateSeriesSessionBasis((TherapySession) sender);
+            if (!(sender is ComboBox box))
+            {
+                return;
+            }
+
+            PatientViewViewModel.Instance.SelectedSession = (TherapySession)e.AddedItems[0];
+            NotesList.ItemsSource = PatientViewViewModel.Instance.SelectedSession.GetNotesList();
         }
     }
 }
