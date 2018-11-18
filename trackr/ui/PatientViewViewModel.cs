@@ -26,7 +26,7 @@ namespace trackr.ui
             {
                 try
                 {
-                    return Workspace.Instance.ActivePatient?.GetSessions().Last().StartDateTime.ToShortDateString();
+                    return "Last Session: \n" + Workspace.Instance.ActivePatient?.GetSessions().Last().StartDateTime.ToShortDateString();
                 }
                 catch (InvalidOperationException)
                 {
@@ -46,7 +46,7 @@ namespace trackr.ui
             {
                 try
                 {
-                    return Workspace.Instance.ActivePatient?.NextSession.ToShortDateString();
+                    return "Next Session: \n" + Workspace.Instance.ActivePatient?.NextSession.ToShortDateString();
                 }
                 catch (InvalidOperationException)
                 {

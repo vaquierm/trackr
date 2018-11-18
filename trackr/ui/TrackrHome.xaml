@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:trackr"
         mc:Ignorable="d"
-        Title="Trackr">
-  <Grid>
+        Title="Trackr" Background="Azure">
+    <Grid>
         <ItemsControl x:Name="patientsControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
@@ -14,18 +14,20 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Image x:Name="welcomeImage" Visibility="Collapsed" HorizontalAlignment="Left" Height="422" Margin="0,0,0,0" VerticalAlignment="Top" Width="812" Source="../WelcomeImage.png" Stretch="Fill"/>
-    <Grid>
-      <TextBlock x:Name="welcomeText" Visibility="Collapsed" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Margin="186,82,170.5,205.5" Height="135" Width="456"/>
-      <Image x:Name="trackr" Visibility="Collapsed" HorizontalAlignment="Left" Height="92" Margin="285,236,0,0" VerticalAlignment="Top" Width="253" Source="../trackr.png"/>
+        <Image x:Name="welcomeImage" Visibility="Visible" HorizontalAlignment="Left" Height="{Binding ActualHeight, 
+              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Margin="0,0,0,0" VerticalAlignment="Top" Width="{Binding ActualWidth, 
+              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Source="../WelcomeImage.png" Stretch="Fill"/>
+        <Grid>
+            <TextBlock x:Name="welcomeText" Visibility="Visible" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Margin="439,230,385,355" Height="135" Width="456"/>
+            <Image x:Name="trackr" Visibility="Visible" HorizontalAlignment="Left" Height="216" Margin="552,494,0,0" VerticalAlignment="Top" Width="456" Source="../trackr.png"/>
+        </Grid>
+        <ToolBarTray x:Name="toolbar" IsLocked="True" Visibility="Collapsed" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
+              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Background="#373545">
+            <ToolBar x:Name="toolBar" Band="1" BandIndex="1" Background="#373545">
+                <Button x:Name="btnSettings" Click="btnSettings_Click">
+                    <Image Source="../settings.png" Stretch="Fill" Height="20" Width="20"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
     </Grid>
-    <ToolBarTray HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
-              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
-      <ToolBar x:Name="toolBar" Band="1" BandIndex="1">
-        <Button x:Name="btnSettings" Click="btnSettings_Click">
-            <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
-        </Button>
-    </ToolBar>
-    </ToolBarTray>
-  </Grid>
 </Page>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:trackr.ui"
         mc:Ignorable="d"
         Title="trackr" WindowState="Maximized"
-        Source="TrackrHome.xaml"
+        Source="TrackrHome.xaml" Icon="../squiggleIcon.ico"
         ShowsNavigationUI="False"
         Closing="MainWindow_OnClosing">
 </NavigationWindow>

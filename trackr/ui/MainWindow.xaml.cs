@@ -23,8 +23,12 @@ namespace trackr.ui
     /// </summary>
     public partial class MainWindow : NavigationWindow
     {
+        public static bool firstOpen { get; set; }
+
         public MainWindow()
         {
+            firstOpen = true;
+
             InitializeComponent();
             CameraController.InitializeToDefaultCamera();
             Workspace.Instance.Init();

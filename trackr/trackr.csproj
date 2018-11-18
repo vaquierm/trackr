@@ -177,9 +177,18 @@
   <ItemGroup>
     <Resource Include="WelcomeImage.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="back.png" />
+    <Resource Include="settings.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="trackr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo_name.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="squiggleIcon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
