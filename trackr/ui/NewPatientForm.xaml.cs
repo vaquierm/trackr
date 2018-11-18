@@ -40,15 +40,21 @@ namespace trackr.ui
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             var date = birthDayDatePicker.SelectedDate;
+
+            if (firstNameTextBox.Text == string.Empty || lastNameTextBox.Text == string.Empty)
+            {
+                errorMessageTextBlock.Text = "The name field cannot be empty";
+            }
+
             if (date == null)
             {
-                //Message select a date
+                errorMessageTextBlock.Text = "A valid date must be selected.";
                 return;
             }
 
             if (genderComboBox.SelectedItem is string && genderComboBox.SelectedItem == null)
             {
-                // Select gender message
+                errorMessageTextBlock.Text = "A gender must be selected";
                 return;
                 
             }

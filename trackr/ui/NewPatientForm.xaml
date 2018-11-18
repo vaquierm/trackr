@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="New Patient Form" Height="350" Width="430" ResizeMode="NoResize">
     <Grid>
-        <Label Content="Create New Patient" HorizontalAlignment="Left" Margin="34,10,0,0" VerticalAlignment="Top" Height="40" Width="197" FontSize="20" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
+        <Label Content="Create New Patient" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="40" Width="197" FontSize="20" FontWeight="Bold" FontFamily="Segoe UI Semibold"/>
         <Label Content="First Name :" HorizontalAlignment="Left" Margin="34,74,0,0" VerticalAlignment="Top" Height="34" Width="97" FontSize="16" FontFamily="Segoe UI Semibold"/>
         <Label Content="Last Name :" HorizontalAlignment="Left" Margin="34,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.426,0.407" FontSize="16" Width="97" Height="34" FontFamily="Segoe UI Semibold"/>
         <TextBox x:Name="firstNameTextBox" HorizontalAlignment="Left" Height="34" Margin="136,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" FontSize="16"/>
@@ -18,6 +18,7 @@
         <DatePicker x:Name="birthDayDatePicker" HorizontalAlignment="Left" Margin="136,212,0,0" VerticalAlignment="Top" Height="34" Width="250" FontSize="16"/>
         <Button x:Name="confirmButton" Content="Confirm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="286,272,0,0" Height="30" Click="confirmButton_Click"/>
         <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="177,272,0,0" VerticalAlignment="Top" Width="97" Height="30" Click="cancelButton_Click"/>
+        <TextBlock x:Name="errorMessageTextBlock" HorizontalAlignment="Left" Margin="34,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="19" Width="352" Foreground="Red"/>
 
     </Grid>
 </Window>
