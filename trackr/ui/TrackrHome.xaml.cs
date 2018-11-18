@@ -48,11 +48,14 @@ namespace trackr
 
             InitializePatientButtons();
 
+            
+
             //var ws = Workspace.Instance;
             //ws.AddNewPatient(new TherapyPatient("Michael", "Duboi", Gender.Male, DateTime.Today));
             //ws.AddNewPatient(new TherapyPatient("Evan", "Duboi", Gender.Male, DateTime.Today));
             //ws.AddNewPatient(new TherapyPatient("GabGab", "Duboi", Gender.Female, DateTime.Today));
             //ws.AddNewPatient(new TherapyPatient("JT", "Duboi", Gender.Male, DateTime.Today));
+            //ws.ActivePatient = ws.GetPatients().ElementAt(0);
             //ws.StartNewSession();
             //Thread.Sleep(5000);
             //ws.ActivePatient.EndSession();
@@ -96,15 +99,38 @@ namespace trackr
                 {
                     patientButton.Margin = new Thickness(20, 10, 20, 10);
                 }
+
+                string lastSession;
+                if (patient.GetSessions().Count == 0)
+                    lastSession = "No sessions yet.";
+                else
+                    lastSession = patient.GetSessions().Last().StartDateTime.ToString("dd/MM/yyyy");
                 var patientText = new TextBlock
                 {
                     Height = 70,
-                    Width = 340,
+                    Width = System.Windows.SystemParameters.PrimaryScreenWidth - 70,
                     FontSize = 24,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     TextAlignment = TextAlignment.Center,
-                    Text = patient.Info.Name + " " + patient.Info.LastName + "\n" + patient.Info.BirthDate
+                    //Text = patient.Info.Name + " " + patient.Info.LastName + "\t\tLast Session: " + "\t\tMNext Session:"  + "\nAge:" + patient.Info.Age() + "\t\t" + lastSession
+                    //+ "\t\t" + "Next"
                 };
+
+                patientText.Inlines.Add(new Run
+                {
+                    Text = patient.Info.Name + " " + patient.Info.LastName + "\t\t\tLast Session: " + "\t\t\tNext Session:"
+                });
+                patientText.Inlines.Add(new LineBreak());
+                patientText.Inlines.Add(new Run
+                {
+                    Text = "Age: " + patient.Info.Age() + "\t\t\t" + lastSession + "\t\t\t" + "Next"
+                });
+
+                var grid = new Grid();
+
+                
+
+
                 patientButton.Content = patientText;
 
                 patientButtons.Add(patientButton);

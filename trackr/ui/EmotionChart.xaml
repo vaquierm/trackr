@@ -45,17 +45,12 @@
                             </Style>
                         </ListBox.ItemContainerStyle>
                     </ListBox>
-                    <ListBox Name="ListBox2" PreviewMouseDown="ListBox2_OnPreviewMouseDown" 
-                             Panel.ZIndex="1" Canvas.Left="-100" Canvas.Top="250" BorderThickness="0" Background="White" Padding="10">
-                        <TextBlock Text="Yearly" 
-                                           Foreground="DimGray"
-                                           Opacity="{Binding Path=yearlyVisibility, Converter={StaticResource OpacityConverter}}"
-                                           FontSize="16"/>
-                                <TextBlock Text="Monthly" 
-                                           Foreground="DimGray"
-                                           Opacity="{Binding Path=monthVisibility, Converter={StaticResource OpacityConverter}}"
-                                           FontSize="16"/>
-                                <ListBox.ItemContainerStyle>
+                    <ListBox Name="ListBox2" Panel.ZIndex="1" Canvas.Left="-100" Canvas.Top="250" BorderThickness="0" Background="White" Padding="10">
+                        <TextBlock x:Name="yearTB" Text="Yearly" PreviewMouseDown="MonthYearVisibility_Click"
+                                Foreground="DimGray" FontSize="16"/>
+                        <TextBlock x:Name="monthTB" Text="Monthly" PreviewMouseDown="MonthYearVisibility_Click"
+                               Foreground="DimGray" FontSize="16"/>
+                        <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="Background" Value="Transparent" />
                                 <Setter Property="Template">

@@ -152,6 +152,9 @@ namespace trackr.core
         
         public void EndCurrentSession()
         {
+            if (ActivePatient?.GetActiveSession() == null)
+                return;
+
             if (!ActivePatient.GetSessions().Any())
             {
                 return;
