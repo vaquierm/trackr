@@ -67,7 +67,7 @@ namespace trackr
 
             // --------------------- BACKEND TESTS, IGNORE PLS ---------------------------
             //var wrk = new Workspace();
-            //wrk.AddNewPatient(new TherapyPatient("Dummy", "McDummyFace", Gender.Other, DateTime.Today));
+            //Workspace.Instance.AddNewPatient(new TherapyPatient("Dummy", "McDummyFace", Gender.Other, DateTime.Today));
             /*wrk.ActivePatient.NewSession();
             Thread.Sleep(5000);
             wrk.ActivePatient.EndSession();

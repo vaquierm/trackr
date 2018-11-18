@@ -60,13 +60,25 @@ namespace trackr.ui
             set => Workspace.Instance.ActivePatient = value;
         }
 
-        public TherapySession ActiveSession
-        {
-            get => Workspace.Instance.ActivePatient.GetActiveSession();
-        }
-        
+        public TherapySession ActiveSession => Workspace.Instance.ActivePatient.GetActiveSession();
+
         public bool SessionStarted { get; set; }
-        
+
+        public List<TherapySession> ActivePatientSessions => ActivePatient?.GetSessions();
+
+        private TherapySession _selectedSession;
+        public TherapySession SelectedSession
+        {
+            get => _selectedSession; 
+            set
+            {
+                _selectedSession = value;
+                SelectedSessionNotes = value?.GetNotesList();
+            }
+        }
+
+        public List<Note> SelectedSessionNotes { get; set; }
+
         #endregion
 
         public void SendNoteToWorkspace(string rawNote)

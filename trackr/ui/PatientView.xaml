@@ -10,6 +10,13 @@
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" 
             Height="{Binding ActualHeight, 
               RelativeSource ={RelativeSource AncestorType = {x:Type Window}}}">
+        <ItemsControl x:Name="NoteControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding ButtonContent}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <UniformGrid Columns="3" Margin="5,0">
             <FrameworkElement x:Name="c1"/>
         </UniformGrid>
@@ -28,7 +35,28 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Sessions" Width="{Binding ElementName=c1, Path=ActualWidth}">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Margin="10,10,10,10">
+                        <ComboBox Name="SessionsComboBox" ItemsSource="{Binding Path=ActivePatientSessions}" SelectionChanged="SessionsComboBox_OnSelectionChanged" FontSize="20"/>
+                        <ListView Name="NotesList" ItemsSource="{Binding Path=SelectedSessionNotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Text="{Binding}" FontSize="20" TextWrapping="WrapWithOverflow" MaxWidth="{Binding ActualWidth, 
+                                          RelativeSource = {RelativeSource AncestorType = {x:Type ListView}}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10,10,10,10">
+                        <TextBlock Text="This is a placeholder, put the graph here"></TextBlock>
+                    </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Header="New" Width="{Binding ElementName=c1, Path=ActualWidth}">
                 <Grid Background="#FFE5E5E5">

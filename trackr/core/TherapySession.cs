@@ -19,8 +19,8 @@ namespace trackr.core
         
         public bool SessionRunning { get; set; }
 
-        [JsonProperty(PropertyName = nameof(_notesDictionary), Required = Required.Always)]
-        private readonly Dictionary<DateTime, string> _notesDictionary;
+        [JsonProperty(PropertyName = nameof(_notesList), Required = Required.Always)]
+        private readonly List<Note> _notesList;
         
         [JsonProperty(PropertyName = nameof(_emotionData), Required = Required.Always)]
         private readonly List<EmotionData> _emotionData;
@@ -31,13 +31,13 @@ namespace trackr.core
             StartDateTime = DateTime.Now;
             SessionRunning = true;
             
-            _notesDictionary = new Dictionary<DateTime, string>();
+            _notesList = new List<Note>();
             _emotionData = new List<EmotionData>();
         }
 
         public void InsertNote(DateTime timeStamp, string content)
         {
-            _notesDictionary.Add(timeStamp, content);
+            _notesList.Add(new Note {TimeStamp = timeStamp, Content = content});
         }
         
         public void InsertEmotionData(EmotionData data)
@@ -45,11 +45,10 @@ namespace trackr.core
             _emotionData.Add(data);
         }
 
-        public KeyValuePair<DateTime, string> FindClosestNote(DateTime timeStamp)
+        public Note FindClosestNote(DateTime timeStamp)
         {
-            var ret = new KeyValuePair<DateTime, string>();
-            var found = _notesDictionary.OrderBy(x => Math.Abs(timeStamp.Millisecond - x.Key.Millisecond)).First();
-            return ret;
+            var found = _notesList.OrderBy(x => Math.Abs(timeStamp.Millisecond - x.TimeStamp.Millisecond)).First();
+            return found;
         }
 
         public void EndSession()
@@ -58,14 +57,19 @@ namespace trackr.core
             SessionRunning = false;
         }
 
-        public Dictionary<DateTime, string> GetNotesDictionary()
+        public List<Note> GetNotesList()
         {
-            return _notesDictionary;
+            return _notesList;
         }
         
         public List<EmotionData> GetEmotionDataList()
         {
             return _emotionData;
+        }
+        
+        public override string ToString()
+        {
+            return StartDateTime + " - " + EndDateTime;
         }
     }
 }
