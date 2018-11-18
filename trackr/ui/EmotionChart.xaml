@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:trackr.ui"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" Loaded="UserControl_Loaded" >
     <Grid Margin="20">
         <Grid.Effect>
             <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" Opacity=".2" ShadowDepth="1"/>
@@ -32,24 +32,6 @@
                                            FontSize="16"/>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ListBoxItem}">
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                            <ContentPresenter />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                    </ListBox>
-                    <ListBox Name="ListBox2" Panel.ZIndex="1" Canvas.Left="-100" Canvas.Top="250" BorderThickness="0" Background="White" Padding="10">
-                        <TextBlock x:Name="yearTB" Text="Yearly" PreviewMouseDown="MonthYearVisibility_Click"
-                                Foreground="DimGray" FontSize="16"/>
-                        <TextBlock x:Name="monthTB" Text="Monthly" PreviewMouseDown="MonthYearVisibility_Click"
-                               Foreground="DimGray" FontSize="16"/>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="Background" Value="Transparent" />

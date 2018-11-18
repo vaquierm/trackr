@@ -68,5 +68,10 @@ namespace trackr.ui
             btnEnd.IsEnabled = false;
             nte.rtb.IsReadOnlyCaretVisible = true;
         }
+
+        void cmbItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            chart2.UpdateSeriesSessionBasis((TherapySession) sender);
+        }
     }
 }

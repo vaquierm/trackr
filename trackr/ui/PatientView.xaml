@@ -24,11 +24,24 @@
                                VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockLast" HorizontalAlignment="Left" Margin="77,59,0,0" TextWrapping="Wrap" Text="{Binding Path=ActivePatientLastDate}" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockNext" HorizontalAlignment="Left" Margin="79,105,0,0" TextWrapping="Wrap" Text="{Binding Path=ActivePatientNextDate}" VerticalAlignment="Top"/>
-                    <controls:EmotionChart x:Name="chart" Margin="400,45,55.5,70"></controls:EmotionChart>
+                    <controls:EmotionChart x:Name="chart" UsePatientBasis="True" Margin="400,45,55.5,70"></controls:EmotionChart>
                 </Grid>
             </TabItem>
             <TabItem Header="Sessions" Width="{Binding ElementName=c1, Path=ActualWidth}">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox ItemsSource="{Binding Path=ActivePatientSessions}" Height="30" Width="200" Margin="0,0,749,370">
+                        <ComboBox.ItemContainerStyle>
+                            <Style>
+                                <EventSetter Event="ComboBoxItem.PreviewMouseDown" Handler="cmbItem_PreviewMouseDown"/>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+                    <Line X1="450" Y1="30"  
+                          X2="450" Y2="400"  
+                          Stroke="Gray"  
+                          StrokeThickness="2"></Line>
+                    <controls:EmotionChart x:Name="chart2" UsePatientBasis="False" Margin="473,45,55.5,80"></controls:EmotionChart>
+                </Grid>
             </TabItem>
             <TabItem Header="New" Width="{Binding ElementName=c1, Path=ActualWidth}">
                 <Grid Background="#FFE5E5E5">
