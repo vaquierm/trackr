@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +64,11 @@ namespace trackr.ui
         public TherapySession ActiveSession
         {
             get => Workspace.Instance.ActivePatient.GetActiveSession();
+        }
+
+        public ObservableCollection<TherapySession> ActivePatientSessions
+        {
+            get => new ObservableCollection<TherapySession>(Workspace.Instance.ActivePatient.GetSessions());
         }
         
         public bool SessionStarted { get; set; }

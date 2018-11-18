@@ -55,18 +55,18 @@ namespace trackr.ui
                 return;
             }
 
+            if (!richTextBox.Document.Blocks.Any() || richTextBox.IsReadOnly)
+            {
+                return;
+            }
+
             var deltaTime = DateTime.Now.Subtract(_lastChange);
             if (deltaTime.Seconds > TimeInterval)
             {
-                // TODO: Send note to viewModel to save it
-                var text = new TextRange(richTextBox.Document.Blocks.LastBlock.ContentStart, richTextBox.Document.Blocks.LastBlock.ContentEnd);
-                _viewModel.SendNoteToWorkspace(text.Text);
-                
                 richTextBox.AppendText("\n[" + DateTime.Now.ToString(CultureInfo.InvariantCulture) + "] ");
                 richTextBox.CaretPosition = richTextBox.Document.Blocks.LastBlock.ContentEnd;
             }
             _lastChange = DateTime.Now;
-
         }
     }
 }
