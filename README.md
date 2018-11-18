@@ -1,5 +1,6 @@
 ![team logo](https://github.com/vaquierm/trackr/blob/master/teamLogo.png)  ![trackr logo](https://github.com/vaquierm/trackr/blob/master/small%20trackr.png)
-#### CodeJam(2018) submission at McGill University 
+#### CodeJam(2018) submission at McGill University
+#### Check out our [Youtube video](https://youtu.be/MRrH-9KDDO0) explaining what this is!
 -------------------------------------------------
 
 ![teamName](https://github.com/vaquierm/trackr/blob/master/projectNameSmall.png) is an app solution built to help therapists help you. Using trackr, a therapist may track your emotional growth and progress over the course of your visits in a graphical and organized way.
