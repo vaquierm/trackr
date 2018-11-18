@@ -21,6 +21,7 @@ namespace trackr.core
         {
             Info = new TherapyPatientInfo {Name = name, LastName = lastName, Gender = gender, BirthDate = birthDate};
             _sessions = new List<TherapySession>();
+            NextSession = DateTime.Now.AddDays(7);
         }
 
         public TherapySession NewSession()
@@ -36,6 +37,7 @@ namespace trackr.core
         public void EndSession()
         {
             GetActiveSession()?.EndSession();
+            NextSession = DateTime.Now.AddDays(7);
         }
         
         public List<TherapySession> GetSessions() => _sessions;

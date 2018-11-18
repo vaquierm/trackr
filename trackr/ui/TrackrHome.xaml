@@ -35,13 +35,12 @@
         <ToolBarTray x:Name="toolbar" IsLocked="True" Visibility="Collapsed" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Background="#373545">
             <ToolBar x:Name="toolBar" Band="1" BandIndex="1" Background="#373545">
-                <Button x:Name="btnSettings" Click="btnSettings_Click">
-                    <Image Source="../settings.png" Stretch="Fill" Height="20" Width="20"/>
-                </Button>
                 <Button x:Name="newPatientButton" Click="newPatientButton_Click">
                     <Image Source="../addUsr.png" Stretch="Fill" Height="20" Width="20"/>
                 </Button>
-
+                <Button x:Name="btnSettings" Click="btnSettings_Click">
+                    <Image Source="../webcam.png" Stretch="Fill" Height="20" Width="20"/>
+                </Button>
                 <DockPanel Width="631">
                 </DockPanel>
                 <Image Source="../trackr.png" HorizontalAlignment="Right" Height="20" Width="100"/>
