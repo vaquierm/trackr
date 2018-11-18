@@ -199,5 +199,8 @@
   <ItemGroup>
     <Resource Include="squiggleIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="addUsr.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
