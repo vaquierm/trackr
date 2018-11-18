@@ -41,8 +41,8 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Vertical" Grid.Column="0" Margin="10,10,10,10">
-                        <ComboBox Name="SessionsComboBox" ItemsSource="{Binding Path=ActivePatientSessions}" SelectionChanged="SessionsComboBox_OnSelectionChanged" FontSize="20"/>
-                        <ListView Name="NotesList" ItemsSource="{Binding Path=SelectedSessionNotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ComboBox Name="SessionsComboBox" ItemsSource="{Binding ActivePatientSessions}" SelectionChanged="SessionsComboBox_OnSelectionChanged" FontSize="20"/>
+                        <ListView Name="NotesList" ItemsSource="{Binding SelectedSessionNotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" >

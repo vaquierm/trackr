@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:trackr.ui"
+        Icon="../squiggleIcon.ico"
         mc:Ignorable="d"
         Title="New Patient Form" Height="350" Width="430" ResizeMode="NoResize">
     <Grid>

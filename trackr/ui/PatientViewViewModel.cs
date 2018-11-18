@@ -58,14 +58,28 @@ namespace trackr.ui
         public TherapyPatient ActivePatient
         {
             get => Workspace.Instance.ActivePatient;
-            set => Workspace.Instance.ActivePatient = value;
+            set
+            {
+                Workspace.Instance.ActivePatient = value;
+                ActivePatientSessions = value?.GetSessions() != null ? new ObservableCollection<TherapySession>(value.GetSessions()) : null;
+                OnPropertyChanged($"ActivePatientSessions");
+            }
         }
 
         public TherapySession ActiveSession => Workspace.Instance.ActivePatient.GetActiveSession();
 
         public bool SessionStarted { get; set; }
 
-        public List<TherapySession> ActivePatientSessions => ActivePatient?.GetSessions();
+        private ObservableCollection<TherapySession> _activePatientSessions;
+        public ObservableCollection<TherapySession> ActivePatientSessions
+        {
+            get => _activePatientSessions;
+            set
+            {
+                _activePatientSessions = value;
+                OnPropertyChanged();
+            }
+        }
 
         private TherapySession _selectedSession;
         public TherapySession SelectedSession
@@ -109,6 +123,8 @@ namespace trackr.ui
         {
             Workspace.Instance.EndCurrentSession();
             SessionStarted = false;
+            var t = ActivePatient.GetSessions();
+            ActivePatientSessions = new ObservableCollection<TherapySession>(t);
         }
 
         public void Close()

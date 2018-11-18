@@ -64,7 +64,7 @@ namespace trackr
 
             // ----------------------------- UNCOMMENT TO CREATE PATIENTS -----------------------------------
             //var ws = Workspace.Instance;
-            
+
             //ws.AddNewPatient(new TherapyPatient("Tamara", "Hendrix", Gender.Female, new DateTime(1988, 05, 12)));
             //ws.AddNewPatient(new TherapyPatient("George", "Weirsma", Gender.Male, new DateTime(1992, 05, 12)));
             //ws.AddNewPatient(new TherapyPatient("Jared", "Peelee", Gender.Other, new DateTime(1980, 05, 12)));
@@ -117,8 +117,6 @@ namespace trackr
                     TextAlignment = TextAlignment.Center,
                     Foreground = Brushes.White,
                     FontWeight = FontWeights.DemiBold,
-                //Text = patient.Info.Name + " " + patient.Info.LastName + "\t\tLast Session: " + "\t\tMNext Session:"  + "\nAge:" + patient.Info.Age() + "\t\t" + lastSession
-                //+ "\t\t" + "Next"
             };
 
                 patientText.Inlines.Add(new Run
@@ -128,7 +126,7 @@ namespace trackr
                 patientText.Inlines.Add(new LineBreak());
                 patientText.Inlines.Add(new Run
                 {
-                    Text = "Age: " + patient.Info.Age() + "\t\t\t" + lastSession + "\t\t\t" + "Next"
+                    Text = "Age: " + patient.Info.Age() + "\t\t\t\t" + lastSession + "\t\t\t" + patient.NextSession.ToString("dd/MM/yyyy")
                 });
                 patientButton.Content = patientText;
 
