@@ -17,9 +17,20 @@
         <Image x:Name="welcomeImage" Visibility="Visible" HorizontalAlignment="Left" Height="{Binding ActualHeight, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Margin="0,0,0,0" VerticalAlignment="Top" Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Source="../WelcomeImage.png" Stretch="Fill"/>
-        <Grid>
-            <TextBlock x:Name="welcomeText" Visibility="Visible" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Margin="439,230,385,355" Height="135" Width="456"/>
-            <Image x:Name="trackr" Visibility="Visible" HorizontalAlignment="Left" Height="216" Margin="552,494,0,0" VerticalAlignment="Top" Width="456" Source="../trackr.png"/>
+        <Grid Margin="0 350 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="welcomeText" Grid.Column="1" Grid.Row="1" Visibility="Visible" TextWrapping="Wrap" Text="Welcome to" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" FontSize="72" Foreground="White" Height="135" Width="456"/>
+            <Image x:Name="trackr" Grid.Column="1" Grid.Row="2" Visibility="Visible" HorizontalAlignment="Center" Height="216" VerticalAlignment="Top" Width="456" Source="../trackr.png"/>
         </Grid>
         <ToolBarTray x:Name="toolbar" IsLocked="True" Visibility="Collapsed" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Background="#373545">
