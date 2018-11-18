@@ -98,6 +98,9 @@
     <Compile Include="ui\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ui\NewPatientForm.xaml.cs">
+      <DependentUpon>NewPatientForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ui\NoteTextEditor.xaml.cs">
       <DependentUpon>NoteTextEditor.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ui\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ui\NewPatientForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

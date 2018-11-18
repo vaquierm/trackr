@@ -27,6 +27,9 @@
                 <Button x:Name="btnSettings" Click="btnSettings_Click">
                     <Image Source="../settings.png" Stretch="Fill" Height="20" Width="20"/>
                 </Button>
+                <Button x:Name="newPatientButton" Margin="20,0,0,0" Click="newPatientButton_Click">
+                    <Image Source="../trackr.png" Stretch="Fill" Height="20" Width="100"/>
+                </Button>
             </ToolBar>
         </ToolBarTray>
     </Grid>

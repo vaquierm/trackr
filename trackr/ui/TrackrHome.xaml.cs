@@ -58,9 +58,13 @@ namespace trackr
             // Initialize the camera controller
             CameraController.InitializeToDefaultCamera();
 
-            InitializePatientButtons();
+            RefreshPatientButtons();
 
+
+
+            // ----------------------------- UNCOMMENT TO CREATE PATIENTS -----------------------------------
             //var ws = Workspace.Instance;
+            
             //ws.AddNewPatient(new TherapyPatient("Tamara", "Hendrix", Gender.Female, new DateTime(1988, 05, 12)));
             //ws.AddNewPatient(new TherapyPatient("George", "Weirsma", Gender.Male, new DateTime(1992, 05, 12)));
             //ws.AddNewPatient(new TherapyPatient("Jared", "Peelee", Gender.Other, new DateTime(1980, 05, 12)));
@@ -72,7 +76,7 @@ namespace trackr
             //}
         }
 
-        private void InitializePatientButtons()
+        public void RefreshPatientButtons()
         {
             //Create the list of buttons to keep show on the panel
             patientButtons = new List<IdContainerButton>();
@@ -199,6 +203,12 @@ namespace trackr
                 return;
 
             this.NavigationService.Navigate(new PatientView(button.ID));
+        }
+
+        private void newPatientButton_Click(object sender, RoutedEventArgs e)
+        {
+            var newPatientForm = new NewPatientForm(this);
+            newPatientForm.Show();
         }
     }
 }

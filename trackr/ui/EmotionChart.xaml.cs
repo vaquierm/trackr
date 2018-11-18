@@ -261,6 +261,14 @@ namespace trackr.ui
             }
         }
 
+        private void ResetSessionBasis()
+        {
+            foreach (var series in Series)
+            {
+                series.Values.Clear();
+            }
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (UsePatientBasis)
@@ -269,8 +277,13 @@ namespace trackr.ui
             }
             else
             {
-                UpdateSeriesSessionBasis(Workspace.Instance.ActivePatient.GetSessions().ElementAt(Workspace.Instance.ActivePatient.GetSessions().Count - 1));
+                if (Workspace.Instance.ActivePatient.GetSessions().Count == 0)
+                    ResetSessionBasis();
+                else
+                    UpdateSeriesSessionBasis(Workspace.Instance.ActivePatient.GetSessions().ElementAt(Workspace.Instance.ActivePatient.GetSessions().Count - 1));
             }
         }
+
+
     }
 }
