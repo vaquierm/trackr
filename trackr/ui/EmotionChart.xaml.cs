@@ -104,6 +104,7 @@ namespace trackr.ui
 
             foreach (var session in patient.GetSessions())
             {
+                continue;
                 var emotionData = session.GetEmotionDataList();
 
                 if (emotionData.Count == 0)

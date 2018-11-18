@@ -24,7 +24,6 @@ namespace trackr.ui
         public PatientView()
         {
             InitializeComponent();
-            nte.rtb.IsReadOnlyCaretVisible = true;
         }
 
         public PatientView(object o)
@@ -38,6 +37,7 @@ namespace trackr.ui
             InitializeComponent();
 
             chart.UpdateSeriesPatientBasis(patient);
+            nte.rtb.IsReadOnly = true;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -58,15 +58,21 @@ namespace trackr.ui
             PatientViewViewModel.Instance.StartNewSession();
             btnStart.IsEnabled = false;
             btnEnd.IsEnabled = true;
-            nte.rtb.IsReadOnlyCaretVisible = false;
+            nte.rtb.Document.Blocks.Clear();
+            nte.rtb.IsReadOnly = false;
         }
         
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
-            PatientViewViewModel.Instance.EndCurrentSession();
             btnStart.IsEnabled = true;
             btnEnd.IsEnabled = false;
-            nte.rtb.IsReadOnlyCaretVisible = true;
+            nte.rtb.IsReadOnly = true;
+            foreach (var documentBlock in nte.rtb.Document.Blocks)
+            {
+                var text = new TextRange(documentBlock.ContentStart, documentBlock.ContentEnd);
+                PatientViewViewModel.Instance.SendNoteToWorkspace(text.Text);
+            }
+            PatientViewViewModel.Instance.EndCurrentSession();
         }
 
         void cmbItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
