@@ -78,8 +78,13 @@
                     <Image Source="../back.png" Stretch="Fill" Height="20" Width="20" HorizontalAlignment="Left"/>
                 </Button>
                 <Button x:Name="btnSettings" Click="btnSettings_Click" HorizontalAlignment="Right">
-                    <Image Source="../settings.png" Stretch="Fill" Height="20" Width="20"/>
+                    <Image Source="../webcam.png" Stretch="Fill" Height="20" Width="20"/>
                 </Button>
+                <DockPanel Width="631">
+                </DockPanel>
+                <Image Source="../trackr.png" HorizontalAlignment="Right" Height="20" Width="100"/>
+                <DockPanel Width="712">
+                </DockPanel>
             </ToolBar>
         </ToolBarTray>
     </Grid>
