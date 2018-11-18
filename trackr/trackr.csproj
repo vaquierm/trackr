@@ -202,5 +202,8 @@
   <ItemGroup>
     <Resource Include="addUsr.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="webcam.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
