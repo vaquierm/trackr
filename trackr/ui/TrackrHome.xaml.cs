@@ -53,6 +53,7 @@ namespace trackr
                 trackr.Visibility = Visibility.Collapsed;
 
                 toolbar.Visibility = Visibility.Visible;
+                trackrLogo.Visibility = Visibility.Visible;
             }
 
             // Initialize the camera controller
@@ -152,6 +153,7 @@ namespace trackr
             trackr.BeginAnimation(OpacityProperty, da);
 
             toolbar.Visibility = Visibility.Visible;
+            trackrLogo.Visibility = Visibility.Visible;
 
             MainWindow.firstOpen = false;
         }
@@ -174,6 +176,10 @@ namespace trackr
             toolbar.Dispatcher.BeginInvoke(new Action(() =>
             {
                 toolbar.Visibility = Visibility.Visible;
+            }));
+            trackrLogo.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                trackrLogo.Visibility = Visibility.Visible;
             }));
         }
 

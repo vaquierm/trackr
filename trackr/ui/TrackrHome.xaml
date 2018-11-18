@@ -34,19 +34,17 @@
         </Grid>
         <ToolBarTray x:Name="toolbar" IsLocked="True" Visibility="Collapsed" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="{Binding ActualWidth, 
               RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}" Background="#373545">
-            <ToolBar x:Name="toolBar" Band="1" BandIndex="1" Background="#373545">
-                <Button x:Name="newPatientButton" Click="newPatientButton_Click">
+            <ToolBar x:Name="toolBar" Band="1" BandIndex="1" Background="#373545" Width="{Binding ActualWidth, 
+              RelativeSource = {RelativeSource AncestorType = {x:Type Window}}}">
+                <Button x:Name="newPatientButton" HorizontalAlignment="Left" Click="newPatientButton_Click">
                     <Image Source="../addUsr.png" Stretch="Fill" Height="20" Width="20"/>
                 </Button>
-                <Button x:Name="btnSettings" Click="btnSettings_Click">
+                <Button x:Name="btnSettings" HorizontalAlignment="Left" Click="btnSettings_Click">
                     <Image Source="../webcam.png" Stretch="Fill" Height="20" Width="20"/>
                 </Button>
-                <DockPanel Width="631">
-                </DockPanel>
-                <Image Source="../trackr.png" HorizontalAlignment="Right" Height="20" Width="100"/>
-                <DockPanel Width="712">
-                </DockPanel>
             </ToolBar>
+            
         </ToolBarTray>
+        <Image Source="../trackr.png" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="trackrLogo" VerticalAlignment="Top" Height="20" Width="100" Margin="0 5 0 0"/>
     </Grid>
 </Page>
