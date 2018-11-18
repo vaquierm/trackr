@@ -46,7 +46,7 @@ namespace trackr
             // Initialize the camera controller
             CameraController.InitializeToDefaultCamera();
 
-            InitializePatientButtons();
+            RefreshPatientButtons();
 
 
 
@@ -60,12 +60,12 @@ namespace trackr
             //int i = 1;
             //foreach (TherapyPatient patient in ws.GetPatients())
             //{
-            //    patient.GenerateTherapySessionData(2018, i++);
+            //    patient.GenerateTherapySessionData(2018, i);
             //}
 
         }
 
-        private void InitializePatientButtons()
+        public void RefreshPatientButtons()
         {
             //Create the list of buttons to keep show on the panel
             patientButtons = new List<IdContainerButton>();
@@ -166,6 +166,12 @@ namespace trackr
                 return;
 
             this.NavigationService.Navigate(new PatientView(button.ID));
+        }
+
+        private void newPatientButton_Click(object sender, RoutedEventArgs e)
+        {
+            var newPatientForm = new NewPatientForm(this);
+            newPatientForm.Show();
         }
     }
 }
