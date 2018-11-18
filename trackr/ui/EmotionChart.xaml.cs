@@ -196,57 +196,68 @@ namespace trackr.ui
                 series.Values.Clear();
             }
 
-            var emotionData = session.GetEmotionDataList();
+            var allData = session.GetEmotionDataList();
 
-            if (emotionData.Count == 0)
+            if (allData.Count == 0)
                 return;
 
-            // Anger
-            foreach (var data in emotionData)
+            int chunkSize = allData.Count < 50 ? 1 : allData.Count / 50;
+            double sumAnger = 0;
+            double sumContempt = 0;
+            double sumDisgust = 0;
+            double sumFear = 0;
+            double sumHappiness = 0;
+            double sumNeutral = 0;
+            double sumSadness = 0;
+            double sumSurprise = 0;
+            int counter = 0;
+
+            for (int i = 0; i < allData.Count; i ++)
             {
-                Series.ElementAt(0).Values.Add((double) data.Anger);
+                if (counter >= chunkSize)
+                {
+                    Series.ElementAt(0).Values.Add(sumAnger / chunkSize);
+                    Series.ElementAt(1).Values.Add(sumContempt / chunkSize);
+                    Series.ElementAt(2).Values.Add(sumDisgust / chunkSize);
+                    Series.ElementAt(3).Values.Add(sumFear / chunkSize);
+                    Series.ElementAt(4).Values.Add(sumHappiness / chunkSize);
+                    Series.ElementAt(5).Values.Add(sumNeutral / chunkSize);
+                    Series.ElementAt(6).Values.Add(sumSadness / chunkSize);
+                    Series.ElementAt(7).Values.Add(sumSurprise / chunkSize);
+
+                    sumAnger = 0;
+                    sumContempt = 0;
+                    sumDisgust = 0;
+                    sumFear = 0;
+                    sumHappiness = 0;
+                    sumNeutral = 0;
+                    sumSadness = 0;
+                    sumSurprise = 0;
+                    counter = 0;
+                }
+
+                sumAnger += allData.ElementAt(i).Anger;
+                sumContempt += allData.ElementAt(i).Contempt;
+                sumDisgust += allData.ElementAt(i).Disgust;
+                sumFear += allData.ElementAt(i).Fear;
+                sumHappiness += allData.ElementAt(i).Happiness;
+                sumNeutral += allData.ElementAt(i).Neutral;
+                sumSadness += allData.ElementAt(i).Sadness;
+                sumSurprise += allData.ElementAt(i).Surprise;
+
+                counter++;
             }
 
-            // Contempt
-            foreach (var data in emotionData)
+            if (counter > 0)
             {
-                Series.ElementAt(1).Values.Add((double)data.Contempt);
-            }
-
-            // Disgust
-            foreach (var data in emotionData)
-            {
-                Series.ElementAt(2).Values.Add((double)data.Disgust);
-            }
-
-            // Fear
-            foreach (var data in emotionData)
-            {
-                Series.ElementAt(3).Values.Add((double)data.Fear);
-            }
-
-            // Happiness
-            foreach (var data in emotionData)
-            {
-                Series.ElementAt(4).Values.Add((double)data.Happiness);
-            }
-
-            // Neutral
-            foreach (var data in emotionData)
-            {
-                Series.ElementAt(5).Values.Add((double)data.Neutral);
-            }
-
-            // Sadness
-            foreach (var data in emotionData)
-            {
-                Series.ElementAt(6).Values.Add((double)data.Sadness);
-            }
-
-            // Surprise
-            foreach (var data in emotionData)
-            {
-                Series.ElementAt(7).Values.Add((double)data.Surprise);
+                Series.ElementAt(0).Values.Add(sumAnger / chunkSize);
+                Series.ElementAt(1).Values.Add(sumContempt / chunkSize);
+                Series.ElementAt(2).Values.Add(sumDisgust / chunkSize);
+                Series.ElementAt(3).Values.Add(sumFear / chunkSize);
+                Series.ElementAt(4).Values.Add(sumHappiness / chunkSize);
+                Series.ElementAt(5).Values.Add(sumNeutral / chunkSize);
+                Series.ElementAt(6).Values.Add(sumSadness / chunkSize);
+                Series.ElementAt(7).Values.Add(sumSurprise / chunkSize);
             }
         }
 

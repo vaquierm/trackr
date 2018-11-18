@@ -34,21 +34,28 @@
                     <controls:EmotionChart x:Name="chart" UsePatientBasis="True" Margin="400,45,55.5,70"></controls:EmotionChart>
                 </Grid>
             </TabItem>
-
             <TabItem Header="Sessions" Background="CadetBlue" FontWeight="DemiBold" Width="{Binding ElementName=c1, Path=ActualWidth}">
                 <Grid Background="Azure">
-                    <ComboBox ItemsSource="{Binding Path=ActivePatientSessions}" Height="30" Width="200" Margin="0,0,749,370">
-                        <ComboBox.ItemContainerStyle>
-                            <Style>
-                                <EventSetter Event="ComboBoxItem.PreviewMouseDown" Handler="cmbItem_PreviewMouseDown"/>
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                    </ComboBox>
-                    <Line X1="450" Y1="30"  
-                          X2="450" Y2="400"  
-                          Stroke="Gray"  
-                          StrokeThickness="2"></Line>
-                    <controls:EmotionChart x:Name="chart2" UsePatientBasis="False" Margin="473,45,55.5,80"></controls:EmotionChart>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Column="0" Margin="10,10,10,10">
+                        <ComboBox Name="SessionsComboBox" ItemsSource="{Binding Path=ActivePatientSessions}" SelectionChanged="SessionsComboBox_OnSelectionChanged" FontSize="20"/>
+                        <ListView Name="NotesList" ItemsSource="{Binding Path=SelectedSessionNotes}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Text="{Binding}" FontSize="20" TextWrapping="WrapWithOverflow" MaxWidth="{Binding ActualWidth, 
+                                          RelativeSource = {RelativeSource AncestorType = {x:Type ListView}}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="10,10,10,10">
+                        <controls:EmotionChart x:Name="chart2" UsePatientBasis="True" Height="832" Margin="75,0,3,0"></controls:EmotionChart>
+                    </StackPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="New" Background="CadetBlue" FontWeight="DemiBold" Width="{Binding ElementName=c1, Path=ActualWidth}">

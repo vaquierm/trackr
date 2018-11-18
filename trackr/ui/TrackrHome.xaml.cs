@@ -59,6 +59,17 @@ namespace trackr
             CameraController.InitializeToDefaultCamera();
 
             InitializePatientButtons();
+
+            //var ws = Workspace.Instance;
+            //ws.AddNewPatient(new TherapyPatient("Tamara", "Hendrix", Gender.Female, new DateTime(1988, 05, 12)));
+            //ws.AddNewPatient(new TherapyPatient("George", "Weirsma", Gender.Male, new DateTime(1992, 05, 12)));
+            //ws.AddNewPatient(new TherapyPatient("Jared", "Peelee", Gender.Other, new DateTime(1980, 05, 12)));
+            //ws.AddNewPatient(new TherapyPatient("Shawn", "Wheeler", Gender.Male, new DateTime(1995, 05, 12)));
+            //int i = 1;
+            //foreach (TherapyPatient patient in ws.GetPatients())
+            //{
+            //    patient.GenerateTherapySessionData(2018, i);
+            //}
         }
 
         private void InitializePatientButtons()

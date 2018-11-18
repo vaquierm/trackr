@@ -88,6 +88,7 @@ namespace trackr.ui
 
             PatientViewViewModel.Instance.SelectedSession = (TherapySession)e.AddedItems[0];
             NotesList.ItemsSource = PatientViewViewModel.Instance.SelectedSession.GetNotesList();
+            chart2.UpdateSeriesSessionBasis(PatientViewViewModel.Instance.SelectedSession);
         }
     }
 }
