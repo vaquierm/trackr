@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,11 +60,11 @@ namespace trackr.ui
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            PatientViewViewModel.Instance.StartNewSession();
             btnStart.IsEnabled = false;
             btnEnd.IsEnabled = true;
             nte.rtb.Document.Blocks.Clear();
             nte.rtb.IsReadOnly = false;
+            PatientViewViewModel.Instance.StartNewSession();
         }
         
         private void btnEnd_Click(object sender, RoutedEventArgs e)
@@ -76,6 +77,7 @@ namespace trackr.ui
                 var text = new TextRange(documentBlock.ContentStart, documentBlock.ContentEnd);
                 PatientViewViewModel.Instance.SendNoteToWorkspace(text.Text);
             }
+            
             PatientViewViewModel.Instance.EndCurrentSession();
         }
 
@@ -86,6 +88,11 @@ namespace trackr.ui
                 return;
             }
 
+            if (e.AddedItems.Count == 0)
+            {
+                return;
+            }
+            
             PatientViewViewModel.Instance.SelectedSession = (TherapySession)e.AddedItems[0];
             NotesList.ItemsSource = PatientViewViewModel.Instance.SelectedSession.GetNotesList();
         }

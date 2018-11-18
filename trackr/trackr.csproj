@@ -87,6 +87,7 @@
     <Compile Include="core\Note.cs" />
     <Compile Include="core\TherapyPatient.cs" />
     <Compile Include="core\Workspace.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ui\IdContainerButton.cs" />
     <Compile Include="ui\ImageFeedWindow.xaml.cs">
       <DependentUpon>ImageFeedWindow.xaml</DependentUpon>

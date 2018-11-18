@@ -6,5 +6,5 @@
              xmlns:local="clr-namespace:trackr.ui"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-         <RichTextBox Name="rtb" PreviewKeyDown="Rtb_OnKeyDown_" FontSize="20" />           
+         <RichTextBox Name="rtb" KeyDown="Rtb_OnKeyDown_" FontSize="20" />           
 </UserControl>

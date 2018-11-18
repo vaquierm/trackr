@@ -27,7 +27,6 @@ namespace trackr.ui
         private const int TimeInterval = 3;
         private DateTime _lastChange;
         private readonly PatientViewViewModel _viewModel;
-        private readonly Timer _saveTimer;
         
         public NoteTextEditor()
         {
@@ -35,17 +34,6 @@ namespace trackr.ui
             DataContext = PatientViewViewModel.Instance;
             _viewModel = PatientViewViewModel.Instance;
             InitializeComponent();
-            _saveTimer = new Timer(3000) {AutoReset = true};
-            _saveTimer.Elapsed += OnTimedEvent;
-            _saveTimer.Start();
-        }
-
-        private void OnTimedEvent(object sender, ElapsedEventArgs e)
-        {
-            /*_saveTimer.Stop();
-            var text = new TextRange(rtb.Document.Blocks.LastBlock.ContentStart, rtb.Document.Blocks.LastBlock.ContentEnd);
-            _viewModel.SendNoteToWorkspace(text.Text);
-            _saveTimer.Start();*/
         }
 
         private void Rtb_OnKeyDown_(object sender, KeyEventArgs e)
@@ -55,7 +43,7 @@ namespace trackr.ui
                 return;
             }
 
-            if (!richTextBox.Document.Blocks.Any() || richTextBox.IsReadOnly)
+            if (richTextBox.IsReadOnly)
             {
                 return;
             }
