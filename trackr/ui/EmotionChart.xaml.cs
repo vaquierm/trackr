@@ -136,7 +136,7 @@ namespace trackr.ui
                 if (emotionData.Count == 0)
                     continue;
 
-                float avg = 0;
+                double avg = 0;
 
                 // Anger
                 foreach (var data in emotionData)
@@ -223,14 +223,14 @@ namespace trackr.ui
                 series.Values.Clear();
             }
 
-            float anger = 0;
-            float contempt = 0;
-            float disgust = 0;
-            float fear = 0;
-            float happiness = 0;
-            float neutral = 0;
-            float sadness = 0;
-            float surprise = 0;
+            double anger = 0;
+            double contempt = 0;
+            double disgust = 0;
+            double fear = 0;
+            double happiness = 0;
+            double neutral = 0;
+            double sadness = 0;
+            double surprise = 0;
 
             var n = 0;
 
@@ -287,7 +287,7 @@ namespace trackr.ui
                 if (emotionData.Count == 0)
                     continue;
 
-                float avg = 0;
+                double avg = 0;
 
                 // Anger
                 foreach (var data in emotionData)
@@ -360,6 +360,19 @@ namespace trackr.ui
                 avg /= emotionData.Count;
                 surprise += avg;
             }
+
+            if (n > 0)
+            {
+                // Add average emotion for the month
+                Series.ElementAt(0).Values.Add(anger / n);
+                Series.ElementAt(1).Values.Add(contempt / n);
+                Series.ElementAt(2).Values.Add(disgust / n);
+                Series.ElementAt(3).Values.Add(fear / n);
+                Series.ElementAt(4).Values.Add(happiness / n);
+                Series.ElementAt(5).Values.Add(neutral / n);
+                Series.ElementAt(6).Values.Add(sadness / n);
+                Series.ElementAt(7).Values.Add(surprise / n);
+            }
         }
 
         public void UpdateSeriesPatientBasisYearly(TherapyPatient patient)
@@ -374,14 +387,14 @@ namespace trackr.ui
                 series.Values.Clear();
             }
 
-            float anger = 0;
-            float contempt = 0;
-            float disgust = 0;
-            float fear = 0;
-            float happiness = 0;
-            float neutral = 0;
-            float sadness = 0;
-            float surprise = 0;
+            double anger = 0;
+            double contempt = 0;
+            double disgust = 0;
+            double fear = 0;
+            double happiness = 0;
+            double neutral = 0;
+            double sadness = 0;
+            double surprise = 0;
 
             var n = 0;
             
@@ -428,7 +441,7 @@ namespace trackr.ui
                 if (emotionData.Count == 0)
                     continue;
 
-                float avg = 0;
+                double avg = 0;
 
                 // Anger
                 foreach (var data in emotionData)
@@ -501,6 +514,19 @@ namespace trackr.ui
                 avg /= emotionData.Count;
                 surprise += avg;
             }
+
+            if (n > 0)
+            {
+                // Add average emotion for the month
+                Series.ElementAt(0).Values.Add(anger / n);
+                Series.ElementAt(1).Values.Add(contempt / n);
+                Series.ElementAt(2).Values.Add(disgust / n);
+                Series.ElementAt(3).Values.Add(fear / n);
+                Series.ElementAt(4).Values.Add(happiness / n);
+                Series.ElementAt(5).Values.Add(neutral / n);
+                Series.ElementAt(6).Values.Add(sadness / n);
+                Series.ElementAt(7).Values.Add(surprise / n);
+            }
         }
 
         public void UpdateSeriesSessionBasis(TherapySession session)
@@ -518,49 +544,49 @@ namespace trackr.ui
             // Anger
             foreach (var data in emotionData)
             {
-                Series.ElementAt(0).Values.Add(data.Anger);
+                Series.ElementAt(0).Values.Add((double) data.Anger);
             }
 
             // Contempt
             foreach (var data in emotionData)
             {
-                Series.ElementAt(1).Values.Add(data.Contempt);
+                Series.ElementAt(1).Values.Add((double)data.Contempt);
             }
 
             // Disgust
             foreach (var data in emotionData)
             {
-                Series.ElementAt(2).Values.Add(data.Disgust);
+                Series.ElementAt(2).Values.Add((double)data.Disgust);
             }
 
             // Fear
             foreach (var data in emotionData)
             {
-                Series.ElementAt(3).Values.Add(data.Fear);
+                Series.ElementAt(3).Values.Add((double)data.Fear);
             }
 
             // Happiness
             foreach (var data in emotionData)
             {
-                Series.ElementAt(4).Values.Add(data.Happiness);
+                Series.ElementAt(4).Values.Add((double)data.Happiness);
             }
 
             // Neutral
             foreach (var data in emotionData)
             {
-                Series.ElementAt(5).Values.Add(data.Neutral);
+                Series.ElementAt(5).Values.Add((double)data.Neutral);
             }
 
             // Sadness
             foreach (var data in emotionData)
             {
-                Series.ElementAt(6).Values.Add(data.Sadness);
+                Series.ElementAt(6).Values.Add((double)data.Sadness);
             }
 
             // Surprise
             foreach (var data in emotionData)
             {
-                Series.ElementAt(7).Values.Add(data.Surprise);
+                Series.ElementAt(7).Values.Add((double)data.Surprise);
             }
         }
     }

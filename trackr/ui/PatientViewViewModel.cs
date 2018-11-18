@@ -39,6 +39,21 @@ namespace trackr.ui
             get => Workspace.Instance.ActivePatient?.Info.Name + " " + Workspace.Instance.ActivePatient?.Info.LastName;
         }
 
+        public string ActivePatientNextDate
+        {
+            get
+            {
+                try
+                {
+                    return Workspace.Instance.ActivePatient?.NextSession.ToShortDateString();
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
+        }
+
         public TherapyPatient ActivePatient
         {
             get => Workspace.Instance.ActivePatient;

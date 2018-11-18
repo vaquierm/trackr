@@ -23,7 +23,7 @@
                                Text="{Binding Path=ActivePatientName}"
                                VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlockLast" HorizontalAlignment="Left" Margin="77,59,0,0" TextWrapping="Wrap" Text="{Binding Path=ActivePatientLastDate}" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlockNext" HorizontalAlignment="Left" Margin="79,105,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlockNext" HorizontalAlignment="Left" Margin="79,105,0,0" TextWrapping="Wrap" Text="{Binding Path=ActivePatientNextDate}" VerticalAlignment="Top"/>
                     <controls:EmotionChart x:Name="chart" Margin="400,45,55.5,70"></controls:EmotionChart>
                 </Grid>
             </TabItem>
