@@ -36,6 +36,18 @@ namespace trackr.ImageProcessing
         [JsonProperty(PropertyName = "surprise")]
         public float Surprise { get; set; }
 
+        public EmotionData(DateTime date, float anger, float contempt, float disgust, float fear, float happiness, float neutral, float sadness, float surprise)
+        {
+            this.TimeStamp = date;
+            this.Anger = anger;
+            this.Contempt = contempt;
+            this.Disgust = disgust;
+            this.Happiness = happiness;
+            this.Neutral = neutral;
+            this.Sadness = sadness;
+            this.Surprise = surprise;
+        }
+
         public string Serialize()
         {
             return JsonConvert.SerializeObject(this);
