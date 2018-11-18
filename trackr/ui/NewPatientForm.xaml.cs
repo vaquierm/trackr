@@ -44,6 +44,7 @@ namespace trackr.ui
             if (firstNameTextBox.Text == string.Empty || lastNameTextBox.Text == string.Empty)
             {
                 errorMessageTextBlock.Text = "The name field cannot be empty";
+                return;
             }
 
             if (date == null)
@@ -52,7 +53,7 @@ namespace trackr.ui
                 return;
             }
 
-            if (genderComboBox.SelectedItem is string && genderComboBox.SelectedItem == null)
+            if (genderComboBox.SelectedItem == null)
             {
                 errorMessageTextBlock.Text = "A gender must be selected";
                 return;
