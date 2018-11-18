@@ -48,22 +48,20 @@ namespace trackr
 
             InitializePatientButtons();
 
-            
 
+
+            // ----------------------------- UNCOMMENT TO CREATE PATIENTS -----------------------------------
             //var ws = Workspace.Instance;
-            //ws.AddNewPatient(new TherapyPatient("Michael", "Duboi", Gender.Male, DateTime.Today));
-            //ws.AddNewPatient(new TherapyPatient("Evan", "Duboi", Gender.Male, DateTime.Today));
-            //ws.AddNewPatient(new TherapyPatient("GabGab", "Duboi", Gender.Female, DateTime.Today));
-            //ws.AddNewPatient(new TherapyPatient("JT", "Duboi", Gender.Male, DateTime.Today));
-            //ws.ActivePatient = ws.GetPatients().ElementAt(0);
-            //ws.StartNewSession();
-            //Thread.Sleep(5000);
-            //ws.ActivePatient.EndSession();
 
-
-
-
-
+            //ws.AddNewPatient(new TherapyPatient("Tamara", "Hendrix", Gender.Female, new DateTime(1988, 05, 12)));
+            //ws.AddNewPatient(new TherapyPatient("George", "Weirsma", Gender.Male, new DateTime(1992, 05, 12)));
+            //ws.AddNewPatient(new TherapyPatient("Jared", "Peelee", Gender.Other, new DateTime(1980, 05, 12)));
+            //ws.AddNewPatient(new TherapyPatient("Shawn", "Wheeler", Gender.Male, new DateTime(1995, 05, 12)));
+            //int i = 1;
+            //foreach (TherapyPatient patient in ws.GetPatients())
+            //{
+            //    patient.GenerateTherapySessionData(2018, i++);
+            //}
 
             // --------------------- BACKEND TESTS, IGNORE PLS ---------------------------
             //var wrk = new Workspace();
@@ -112,8 +110,6 @@ namespace trackr
                     FontSize = 24,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     TextAlignment = TextAlignment.Center,
-                    //Text = patient.Info.Name + " " + patient.Info.LastName + "\t\tLast Session: " + "\t\tMNext Session:"  + "\nAge:" + patient.Info.Age() + "\t\t" + lastSession
-                    //+ "\t\t" + "Next"
                 };
 
                 patientText.Inlines.Add(new Run
