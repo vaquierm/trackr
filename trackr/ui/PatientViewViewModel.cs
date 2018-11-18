@@ -40,18 +40,14 @@ namespace trackr.ui
             get => Workspace.Instance.ActivePatient?.Info.Name + " " + Workspace.Instance.ActivePatient?.Info.LastName;
         }
 
+        private string _activePatientNextDate;
         public string ActivePatientNextDate
         {
-            get
+            get => _activePatientNextDate;
+            set
             {
-                try
-                {
-                    return "Next Session: \n" + Workspace.Instance.ActivePatient?.NextSession.ToShortDateString();
-                }
-                catch (InvalidOperationException)
-                {
-                    return null;
-                }
+                _activePatientNextDate = value;
+                OnPropertyChanged();
             }
         }
 
@@ -62,7 +58,10 @@ namespace trackr.ui
             {
                 Workspace.Instance.ActivePatient = value;
                 ActivePatientSessions = value?.GetSessions() != null ? new ObservableCollection<TherapySession>(value.GetSessions()) : null;
+                ActivePatientNextDate =
+                    "Next Session: \n" + Workspace.Instance.ActivePatient?.NextSession.ToShortDateString();
                 OnPropertyChanged($"ActivePatientSessions");
+                OnPropertyChanged($"ActivePatientNextDate");
             }
         }
 
@@ -125,6 +124,9 @@ namespace trackr.ui
             SessionStarted = false;
             var t = ActivePatient.GetSessions();
             ActivePatientSessions = new ObservableCollection<TherapySession>(t);
+            var nextDate = DateTime.Now.AddDays(7);
+            Workspace.Instance.ActivePatient.NextSession = nextDate;
+            ActivePatientNextDate = "Next Session: \n" + nextDate.ToShortDateString();
         }
 
         public void Close()
